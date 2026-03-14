@@ -1,0 +1,178 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-03-05 00:55:06.628830",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "story_section_section",
+  "story_image",
+  "story_title",
+  "story_description",
+  "mission_section_section",
+  "mission_image",
+  "mission_title",
+  "mission_description",
+  "vission_section_section",
+  "vission_image",
+  "vission_title",
+  "vission_description",
+  "value_section_section",
+  "value_title",
+  "value_subtitle",
+  "value_items",
+  "cta_section_section",
+  "cta_title",
+  "cta_subtitle",
+  "cta_button",
+  "cta_button_action"
+ ],
+ "fields": [
+  {
+   "fieldname": "story_section_section",
+   "fieldtype": "Section Break",
+   "label": "Story Section"
+  },
+  {
+   "fieldname": "story_image",
+   "fieldtype": "Attach",
+   "label": "Story Image"
+  },
+  {
+   "fieldname": "story_title",
+   "fieldtype": "Data",
+   "label": "Story Title"
+  },
+  {
+   "fieldname": "story_description",
+   "fieldtype": "Small Text",
+   "label": "Story Description"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "mission_section_section",
+   "fieldtype": "Section Break",
+   "label": "Mission Section"
+  },
+  {
+   "fieldname": "mission_image",
+   "fieldtype": "Attach",
+   "label": "Mission Image"
+  },
+  {
+   "fieldname": "mission_title",
+   "fieldtype": "Data",
+   "label": "Mission Title"
+  },
+  {
+   "fieldname": "mission_description",
+   "fieldtype": "Small Text",
+   "label": "Mission Description"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "vission_section_section",
+   "fieldtype": "Section Break",
+   "label": "Vission Section"
+  },
+  {
+   "fieldname": "vission_image",
+   "fieldtype": "Attach",
+   "label": "Vission Image"
+  },
+  {
+   "fieldname": "vission_title",
+   "fieldtype": "Data",
+   "label": "Vission Title"
+  },
+  {
+   "fieldname": "vission_description",
+   "fieldtype": "Small Text",
+   "label": "Vission Description"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "value_section_section",
+   "fieldtype": "Section Break",
+   "label": "Value Section"
+  },
+  {
+   "fieldname": "value_title",
+   "fieldtype": "Data",
+   "label": "Value Title"
+  },
+  {
+   "fieldname": "value_subtitle",
+   "fieldtype": "Small Text",
+   "label": "Value Subtitle"
+  },
+  {
+   "fieldname": "value_items",
+   "fieldtype": "Table",
+   "label": "Value Items",
+   "options": "Master Child Item"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "cta_section_section",
+   "fieldtype": "Section Break",
+   "label": "CTA Section"
+  },
+  {
+   "fieldname": "cta_title",
+   "fieldtype": "Data",
+   "label": "CTA Title"
+  },
+  {
+   "fieldname": "cta_subtitle",
+   "fieldtype": "Small Text",
+   "label": "CTA Subtitle"
+  },
+  {
+   "fieldname": "cta_button",
+   "fieldtype": "Data",
+   "label": "CTA Button"
+  },
+  {
+   "fieldname": "cta_button_action",
+   "fieldtype": "Data",
+   "label": "CTA Button Action"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-03-05 01:22:59.041761",
+ "modified_by": "Administrator",
+ "module": "Next Edge Software",
+ "name": "About Page",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Guest",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

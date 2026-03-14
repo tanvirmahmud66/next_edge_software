@@ -1,0 +1,277 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-02-27 21:02:39.171383",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "hero_section_section",
+  "hero_badge",
+  "hero_title",
+  "hero_subtitle",
+  "column_break_gmqo",
+  "hero_primary_button_title",
+  "hero_primary_button_url",
+  "hero_secondary_button_title",
+  "hero_secondary_button_url",
+  "hero_image",
+  "services_section_section",
+  "service_badge",
+  "service_title",
+  "service_subtitle",
+  "industries_section_section",
+  "industries_badge",
+  "industries_title",
+  "industries_subtitle",
+  "items",
+  "our_process_section",
+  "process_badge",
+  "process_title",
+  "process_subtitle",
+  "faq_section_section",
+  "faq_badge",
+  "faq_title",
+  "faq_subtitle",
+  "faq_items",
+  "faq_stats",
+  "cta_section_section",
+  "cta_title",
+  "cta_subtitle",
+  "cta_primary_button_title",
+  "cta_primary_button_action",
+  "cta_secondary_button_title",
+  "cta_secondary_button_action",
+  "stats"
+ ],
+ "fields": [
+  {
+   "fieldname": "hero_section_section",
+   "fieldtype": "Section Break",
+   "label": "Hero Section"
+  },
+  {
+   "fieldname": "hero_badge",
+   "fieldtype": "Data",
+   "label": "Hero Badge"
+  },
+  {
+   "fieldname": "hero_title",
+   "fieldtype": "Data",
+   "label": "Hero Title"
+  },
+  {
+   "fieldname": "hero_subtitle",
+   "fieldtype": "Small Text",
+   "label": "Hero Subtitle"
+  },
+  {
+   "fieldname": "column_break_gmqo",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "hero_image",
+   "fieldtype": "Attach",
+   "label": "Hero Image"
+  },
+  {
+   "fieldname": "hero_primary_button_title",
+   "fieldtype": "Data",
+   "label": "Hero Primary Button Title"
+  },
+  {
+   "fieldname": "hero_primary_button_url",
+   "fieldtype": "Data",
+   "label": "Hero Primary Button URL"
+  },
+  {
+   "fieldname": "hero_secondary_button_title",
+   "fieldtype": "Data",
+   "label": "Hero Secondary Button Title"
+  },
+  {
+   "fieldname": "hero_secondary_button_url",
+   "fieldtype": "Data",
+   "label": "Hero Secondary Button URL"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "industries_section_section",
+   "fieldtype": "Section Break",
+   "label": "Industries Section"
+  },
+  {
+   "fieldname": "industries_badge",
+   "fieldtype": "Data",
+   "label": "Industries Badge"
+  },
+  {
+   "fieldname": "industries_title",
+   "fieldtype": "Data",
+   "label": "Industries Title"
+  },
+  {
+   "fieldname": "industries_subtitle",
+   "fieldtype": "Data",
+   "label": "Industries Subtitle"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Master Child Item"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "faq_section_section",
+   "fieldtype": "Section Break",
+   "label": "FAQ Section"
+  },
+  {
+   "fieldname": "faq_badge",
+   "fieldtype": "Data",
+   "label": "FAQ Badge"
+  },
+  {
+   "fieldname": "faq_title",
+   "fieldtype": "Data",
+   "label": "FAQ Title"
+  },
+  {
+   "fieldname": "faq_subtitle",
+   "fieldtype": "Data",
+   "label": "FAQ Subtitle"
+  },
+  {
+   "fieldname": "faq_items",
+   "fieldtype": "Table",
+   "label": "FAQ Items",
+   "options": "Master Child Item"
+  },
+  {
+   "fieldname": "faq_stats",
+   "fieldtype": "Table",
+   "label": "FAQ Stats",
+   "options": "Master Child Item"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "cta_section_section",
+   "fieldtype": "Section Break",
+   "label": "CTA Section"
+  },
+  {
+   "fieldname": "cta_title",
+   "fieldtype": "Data",
+   "label": "CTA Title"
+  },
+  {
+   "fieldname": "cta_subtitle",
+   "fieldtype": "Small Text",
+   "label": "CTA Subtitle"
+  },
+  {
+   "fieldname": "cta_primary_button_title",
+   "fieldtype": "Data",
+   "label": "CTA Primary Button Title"
+  },
+  {
+   "fieldname": "cta_primary_button_action",
+   "fieldtype": "Data",
+   "label": "CTA Primary Button Action"
+  },
+  {
+   "fieldname": "cta_secondary_button_title",
+   "fieldtype": "Data",
+   "label": "CTA Secondary Button Title"
+  },
+  {
+   "fieldname": "cta_secondary_button_action",
+   "fieldtype": "Data",
+   "label": "CTA Secondary Button Action"
+  },
+  {
+   "fieldname": "stats",
+   "fieldtype": "Table",
+   "label": "Stats",
+   "options": "Master Child Item"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "our_process_section",
+   "fieldtype": "Section Break",
+   "label": "Our Process"
+  },
+  {
+   "fieldname": "process_badge",
+   "fieldtype": "Data",
+   "label": "Process Badge"
+  },
+  {
+   "fieldname": "process_title",
+   "fieldtype": "Data",
+   "label": "Process Title"
+  },
+  {
+   "fieldname": "process_subtitle",
+   "fieldtype": "Small Text",
+   "label": "Process Subtitle"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "services_section_section",
+   "fieldtype": "Section Break",
+   "label": "Services Section"
+  },
+  {
+   "fieldname": "service_badge",
+   "fieldtype": "Data",
+   "label": "Service Badge"
+  },
+  {
+   "fieldname": "service_title",
+   "fieldtype": "Data",
+   "label": "Service Title"
+  },
+  {
+   "fieldname": "service_subtitle",
+   "fieldtype": "Small Text",
+   "label": "Service Subtitle"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-03-04 10:48:45.574940",
+ "modified_by": "Administrator",
+ "module": "Next Edge Software",
+ "name": "Home Page",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Guest",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,291 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-03-06 15:23:01.637411",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "hero_section_section",
+  "hero_badge",
+  "hero_title",
+  "hero_subtitle",
+  "hero_primary_button_title",
+  "hero_primary_action",
+  "hero_secondary_button_title",
+  "hero_secondary_action",
+  "hero_image",
+  "application_type_section_section",
+  "application_type_badge",
+  "application_type_title",
+  "application_type_subtitle",
+  "feature_section_section",
+  "feature_section_badge",
+  "feature_section_title",
+  "feature_section_subtitle",
+  "development_process_section_section",
+  "process_badge",
+  "process_title",
+  "process_subtitle",
+  "faq_section_section",
+  "faq_badge",
+  "faq_title",
+  "faq_subtitle",
+  "faq_items",
+  "cta_section_section",
+  "cta_badge",
+  "cta_title",
+  "cta_subtitle",
+  "column_break_zhmy",
+  "cta_primary_button_title",
+  "cta_primary_action",
+  "cta_secondary_button_title",
+  "cta_secondary_action",
+  "column_break_ulaa",
+  "phone",
+  "email",
+  "web_url",
+  "trust_badge"
+ ],
+ "fields": [
+  {
+   "fieldname": "hero_section_section",
+   "fieldtype": "Section Break",
+   "label": "Hero Section"
+  },
+  {
+   "fieldname": "hero_badge",
+   "fieldtype": "Data",
+   "label": "Hero Badge"
+  },
+  {
+   "fieldname": "hero_subtitle",
+   "fieldtype": "Small Text",
+   "label": "Hero Subtitle"
+  },
+  {
+   "fieldname": "hero_primary_button_title",
+   "fieldtype": "Data",
+   "label": "Hero Primary Button Title"
+  },
+  {
+   "fieldname": "hero_primary_action",
+   "fieldtype": "Data",
+   "label": "Hero Primary Action"
+  },
+  {
+   "fieldname": "hero_secondary_button_title",
+   "fieldtype": "Data",
+   "label": "Hero Secondary Button Title"
+  },
+  {
+   "fieldname": "hero_secondary_action",
+   "fieldtype": "Data",
+   "label": "Hero Secondary Action"
+  },
+  {
+   "fieldname": "hero_image",
+   "fieldtype": "Attach",
+   "label": "Hero Image"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "application_type_section_section",
+   "fieldtype": "Section Break",
+   "label": "Application Type Section"
+  },
+  {
+   "fieldname": "application_type_badge",
+   "fieldtype": "Data",
+   "label": "Application Type Badge"
+  },
+  {
+   "fieldname": "application_type_title",
+   "fieldtype": "Data",
+   "label": "Application Type Title"
+  },
+  {
+   "fieldname": "application_type_subtitle",
+   "fieldtype": "Small Text",
+   "label": "Application Type Subtitle"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "feature_section_section",
+   "fieldtype": "Section Break",
+   "label": "Feature Section"
+  },
+  {
+   "fieldname": "feature_section_badge",
+   "fieldtype": "Data",
+   "label": "Feature Section Badge"
+  },
+  {
+   "fieldname": "feature_section_title",
+   "fieldtype": "Data",
+   "label": "Feature Section Title"
+  },
+  {
+   "fieldname": "feature_section_subtitle",
+   "fieldtype": "Small Text",
+   "label": "Feature Section Subtitle"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "development_process_section_section",
+   "fieldtype": "Section Break",
+   "label": "Development Process Section"
+  },
+  {
+   "fieldname": "process_badge",
+   "fieldtype": "Data",
+   "label": "Process Badge"
+  },
+  {
+   "fieldname": "process_title",
+   "fieldtype": "Data",
+   "label": "Process Title"
+  },
+  {
+   "fieldname": "process_subtitle",
+   "fieldtype": "Small Text",
+   "label": "Process Subtitle"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "faq_section_section",
+   "fieldtype": "Section Break",
+   "label": "FAQ Section"
+  },
+  {
+   "fieldname": "faq_badge",
+   "fieldtype": "Data",
+   "label": "FAQ Badge"
+  },
+  {
+   "fieldname": "faq_title",
+   "fieldtype": "Data",
+   "label": "FAQ Title"
+  },
+  {
+   "fieldname": "faq_subtitle",
+   "fieldtype": "Small Text",
+   "label": "FAQ Subtitle"
+  },
+  {
+   "fieldname": "faq_items",
+   "fieldtype": "Table",
+   "label": "FAQ Items",
+   "options": "Master Child Item"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "cta_section_section",
+   "fieldtype": "Section Break",
+   "label": "CTA Section"
+  },
+  {
+   "fieldname": "cta_badge",
+   "fieldtype": "Data",
+   "label": "CTA Badge"
+  },
+  {
+   "fieldname": "cta_title",
+   "fieldtype": "Data",
+   "label": "CTA Title"
+  },
+  {
+   "fieldname": "cta_subtitle",
+   "fieldtype": "Small Text",
+   "label": "CTA Subtitle"
+  },
+  {
+   "fieldname": "cta_primary_button_title",
+   "fieldtype": "Data",
+   "label": "CTA Primary Button Title"
+  },
+  {
+   "fieldname": "cta_primary_action",
+   "fieldtype": "Data",
+   "label": "CTA Primary Action"
+  },
+  {
+   "fieldname": "cta_secondary_button_title",
+   "fieldtype": "Data",
+   "label": "CTA Secondary Button Title"
+  },
+  {
+   "fieldname": "cta_secondary_action",
+   "fieldtype": "Data",
+   "label": "CTA Secondary Action"
+  },
+  {
+   "fieldname": "column_break_zhmy",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "column_break_ulaa",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "phone",
+   "fieldtype": "Data",
+   "label": "Phone"
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "label": "Email"
+  },
+  {
+   "fieldname": "web_url",
+   "fieldtype": "Data",
+   "label": "Web URL"
+  },
+  {
+   "fieldname": "trust_badge",
+   "fieldtype": "Data",
+   "label": "Trust Badge"
+  },
+  {
+   "fieldname": "hero_title",
+   "fieldtype": "Data",
+   "label": "Hero Title"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-03-06 16:41:04.858907",
+ "modified_by": "Administrator",
+ "module": "Next Edge Software",
+ "name": "Web Application Page",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Guest",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

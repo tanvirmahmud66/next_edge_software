@@ -11,15 +11,15 @@ app_license = "mit"
 # required_apps = []
 
 # Each item in the list will be shown as an app in the apps page
-# add_to_apps_screen = [
-# 	{
-# 		"name": "next_edge_software",
-# 		"logo": "/assets/next_edge_software/logo.png",
-# 		"title": "Next Edge Software",
-# 		"route": "/next_edge_software",
-# 		"has_permission": "next_edge_software.api.permission.has_app_permission"
-# 	}
-# ]
+add_to_apps_screen = [
+	{
+		"name": "next_edge_software",
+		"logo": "/assets/next_edge_software/logo.png",
+		"title": "Next Edge Software",
+		"route": "/next_edge_software",
+		# "has_permission": "next_edge_software.api.permission.has_app_permission"
+	}
+]
 
 # Includes in <head>
 # ------------------
@@ -250,3 +250,6 @@ app_license = "mit"
 # List of apps whose translatable strings should be excluded from this app's translations.
 # ignore_translatable_strings_from = []
 
+
+website_route_rules = [{'from_route': '/frontend/<path:app_path>', 'to_route': 'frontend'},]
+# website_route_rules = [{'from_route': '/<path:app_path>', 'to_route': 'frontend'},]

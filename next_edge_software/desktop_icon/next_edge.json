@@ -1,0 +1,23 @@
+{
+ "app": "next_edge_software",
+ "bg_color": "blue",
+ "creation": "2026-02-27 17:11:51.133486",
+ "docstatus": 0,
+ "doctype": "Desktop Icon",
+ "hidden": 0,
+ "icon_image": "/files/EEC.png",
+ "icon_type": "Link",
+ "idx": 1,
+ "label": "Next Edge",
+ "link_to": "Next Edge",
+ "link_type": "Workspace Sidebar",
+ "logo_url": " /files/EEC.png",
+ "modified": "2026-02-27 17:29:51.602137",
+ "modified_by": "Administrator",
+ "name": "Next Edge",
+ "owner": "Administrator",
+ "restrict_removal": 0,
+ "roles": [],
+ "sidebar": "Next Edge",
+ "standard": 1
+}

@@ -1,0 +1,200 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-03-01 00:33:25.989545",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "contact_us_section_section",
+  "section_badge",
+  "section_title",
+  "section_subtitle",
+  "section_stats_section",
+  "items",
+  "contact_informations_section",
+  "primary_number",
+  "secondary_number",
+  "column_break_qvvw",
+  "primary_email",
+  "secondary_email",
+  "column_break_nuxc",
+  "address_1",
+  "address_2",
+  "column_break_zcbk",
+  "business_days",
+  "business_times",
+  "links_section",
+  "facebook",
+  "linkedin",
+  "twitter",
+  "column_break_eyop",
+  "github",
+  "youtube",
+  "whatsapp"
+ ],
+ "fields": [
+  {
+   "fieldname": "contact_us_section_section",
+   "fieldtype": "Section Break",
+   "label": "Contact Us Section"
+  },
+  {
+   "fieldname": "section_badge",
+   "fieldtype": "Data",
+   "label": "Section Badge"
+  },
+  {
+   "fieldname": "section_title",
+   "fieldtype": "Data",
+   "label": "Section Title"
+  },
+  {
+   "fieldname": "section_subtitle",
+   "fieldtype": "Small Text",
+   "label": "Section Subtitle"
+  },
+  {
+   "fieldname": "section_stats_section",
+   "fieldtype": "Section Break",
+   "label": "Section Stats"
+  },
+  {
+   "fieldname": "items",
+   "fieldtype": "Table",
+   "label": "Items",
+   "options": "Master Child Item"
+  },
+  {
+   "fieldname": "contact_informations_section",
+   "fieldtype": "Section Break",
+   "label": "Contact Informations"
+  },
+  {
+   "fieldname": "primary_number",
+   "fieldtype": "Data",
+   "label": "Primary Number"
+  },
+  {
+   "fieldname": "secondary_number",
+   "fieldtype": "Data",
+   "label": "Secondary Number"
+  },
+  {
+   "fieldname": "column_break_qvvw",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "primary_email",
+   "fieldtype": "Data",
+   "label": "Primary Email"
+  },
+  {
+   "fieldname": "secondary_email",
+   "fieldtype": "Data",
+   "label": "Secondary Email"
+  },
+  {
+   "fieldname": "column_break_nuxc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "address_1",
+   "fieldtype": "Data",
+   "label": "Address 1"
+  },
+  {
+   "fieldname": "address_2",
+   "fieldtype": "Data",
+   "label": "Address 2"
+  },
+  {
+   "fieldname": "column_break_zcbk",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "business_days",
+   "fieldtype": "Data",
+   "label": "Business Days"
+  },
+  {
+   "fieldname": "business_times",
+   "fieldtype": "Data",
+   "label": "Business Times"
+  },
+  {
+   "fieldname": "links_section",
+   "fieldtype": "Section Break",
+   "label": "Links"
+  },
+  {
+   "fieldname": "facebook",
+   "fieldtype": "Data",
+   "label": "Facebook"
+  },
+  {
+   "fieldname": "linkedin",
+   "fieldtype": "Data",
+   "label": "LinkedIn"
+  },
+  {
+   "fieldname": "twitter",
+   "fieldtype": "Data",
+   "label": "Twitter"
+  },
+  {
+   "fieldname": "github",
+   "fieldtype": "Data",
+   "label": "Github"
+  },
+  {
+   "fieldname": "youtube",
+   "fieldtype": "Data",
+   "label": "Youtube"
+  },
+  {
+   "fieldname": "whatsapp",
+   "fieldtype": "Data",
+   "label": "Whatsapp"
+  },
+  {
+   "fieldname": "column_break_eyop",
+   "fieldtype": "Column Break"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-03-01 01:06:20.428596",
+ "modified_by": "Administrator",
+ "module": "Next Edge Software",
+ "name": "Contact Us",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Guest",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}
