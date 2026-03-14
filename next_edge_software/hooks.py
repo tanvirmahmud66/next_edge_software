@@ -251,5 +251,5 @@ add_to_apps_screen = [
 # ignore_translatable_strings_from = []
 
 
-website_route_rules = [{'from_route': '/frontend/<path:app_path>', 'to_route': 'frontend'},]
-# website_route_rules = [{'from_route': '/<path:app_path>', 'to_route': 'frontend'},]
+# website_route_rules = [{'from_route': '/frontend/<path:app_path>', 'to_route': 'frontend'},]
+website_route_rules = [{'from_route': '/<path:app_path>', 'to_route': 'frontend'},]
