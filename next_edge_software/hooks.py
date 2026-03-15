@@ -252,4 +252,18 @@ add_to_apps_screen = [
 
 
 # website_route_rules = [{'from_route': '/frontend/<path:app_path>', 'to_route': 'frontend'},]
-website_route_rules = [{'from_route': '/<path:app_path>', 'to_route': 'frontend'},]
+# website_route_rules = [{'from_route': '/<path:app_path>', 'to_route': 'frontend'},]
+
+
+
+home_page = "frontend"
+
+website_route_rules = [
+    {"from_route": "/login", "to_route": "login"},
+    {"from_route": "/api/<path:app_path>", "to_route": None},
+    {"from_route": "/app/<path:app_path>", "to_route": None},
+    {"from_route": "/desk/<path:app_path>", "to_route": None},
+    {"from_route": "/assets/<path:app_path>", "to_route": None},
+    {"from_route": "/files/<path:app_path>", "to_route": None},
+    {"from_route": "/<path:app_path>", "to_route": "frontend"},
+]
