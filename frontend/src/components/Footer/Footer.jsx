@@ -1109,9 +1109,6 @@ const Footer = () => {
             {/* Copyright */}
             <div className="text-white/60 text-sm text-center lg:text-left">
               © {currentYear} Next Edge Software. All rights reserved.
-              <span className="hidden lg:inline mx-2">•</span>
-              <br className="lg:hidden" />
-              Designed with precision in California.
             </div>
 
             {/* Legal Links */}
@@ -1137,48 +1134,8 @@ const Footer = () => {
               >
                 Cookie Settings
               </a>
-              <a
-                href="#sitemap"
-                className="text-white/60 hover:text-white transition-colors hover:underline"
-                style={{ textDecorationColor: themeColors.accent1 }}
-              >
-                Sitemap
-              </a>
-            </div>
-
-            {/* Trust Indicators */}
-            <div className="flex items-center gap-3">
-              <span className="text-xs text-white/40">Secured by</span>
-              <Shield className="w-4 h-4 animate-pulse" style={{ color: themeColors.accent2 }} />
-              <span className="text-xs text-white/60">256-bit SSL</span>
             </div>
           </div>
-
-          {/* Additional Links for Mobile */}
-          <div
-            className="mt-6 pt-6 lg:hidden"
-            style={{ borderTop: `1px solid ${themeColors.accent1}40` }}
-          >
-            <div className="grid grid-cols-2 gap-4 text-center text-xs">
-              <a href="#careers" className="text-white/60 hover:text-white transition-colors">
-                Careers
-              </a>
-              <a href="#blog" className="text-white/60 hover:text-white transition-colors">
-                Blog
-              </a>
-              <a href="#news" className="text-white/60 hover:text-white transition-colors">
-                News
-              </a>
-              <a href="#contact" className="text-white/60 hover:text-white transition-colors">
-                Contact
-              </a>
-            </div>
-          </div>
-        </div>
-
-        {/* Made with love note */}
-        <div className="mt-8 text-center text-xs text-white/40">
-          Made with <span style={{ color: themeColors.accent2 }}>❤</span> by Next Edge Team
         </div>
       </div>
 
