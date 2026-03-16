@@ -5,6 +5,7 @@
  "doctype": "DocType",
  "engine": "InnoDB",
  "field_order": [
+  "hero_section_tab",
   "hero_section_section",
   "hero_badge",
   "hero_title",
@@ -15,25 +16,32 @@
   "hero_secondary_button_title",
   "hero_secondary_button_url",
   "hero_image",
+  "modal_images_section",
+  "modal_images",
+  "services_section_tab",
   "services_section_section",
   "service_badge",
   "service_title",
   "service_subtitle",
+  "industries_section_tab",
   "industries_section_section",
   "industries_badge",
   "industries_title",
   "industries_subtitle",
   "items",
+  "process_section_tab",
   "our_process_section",
   "process_badge",
   "process_title",
   "process_subtitle",
+  "faq_section_tab",
   "faq_section_section",
   "faq_badge",
   "faq_title",
   "faq_subtitle",
   "faq_items",
   "faq_stats",
+  "cta_section_tab",
   "cta_section_section",
   "cta_title",
   "cta_subtitle",
@@ -94,7 +102,6 @@
    "label": "Hero Secondary Button URL"
   },
   {
-   "collapsible": 1,
    "fieldname": "industries_section_section",
    "fieldtype": "Section Break",
    "label": "Industries Section"
@@ -121,7 +128,6 @@
    "options": "Master Child Item"
   },
   {
-   "collapsible": 1,
    "fieldname": "faq_section_section",
    "fieldtype": "Section Break",
    "label": "FAQ Section"
@@ -154,7 +160,6 @@
    "options": "Master Child Item"
   },
   {
-   "collapsible": 1,
    "fieldname": "cta_section_section",
    "fieldtype": "Section Break",
    "label": "CTA Section"
@@ -196,7 +201,6 @@
    "options": "Master Child Item"
   },
   {
-   "collapsible": 1,
    "fieldname": "our_process_section",
    "fieldtype": "Section Break",
    "label": "Our Process"
@@ -217,7 +221,6 @@
    "label": "Process Subtitle"
   },
   {
-   "collapsible": 1,
    "fieldname": "services_section_section",
    "fieldtype": "Section Break",
    "label": "Services Section"
@@ -236,13 +239,54 @@
    "fieldname": "service_subtitle",
    "fieldtype": "Small Text",
    "label": "Service Subtitle"
+  },
+  {
+   "fieldname": "hero_section_tab",
+   "fieldtype": "Tab Break",
+   "label": "Hero Section"
+  },
+  {
+   "fieldname": "modal_images_section",
+   "fieldtype": "Section Break",
+   "label": "Modal Images"
+  },
+  {
+   "fieldname": "modal_images",
+   "fieldtype": "Table",
+   "label": "Modal Images",
+   "options": "Master Child Item"
+  },
+  {
+   "fieldname": "services_section_tab",
+   "fieldtype": "Tab Break",
+   "label": "Services Section"
+  },
+  {
+   "fieldname": "industries_section_tab",
+   "fieldtype": "Tab Break",
+   "label": "Industries Section"
+  },
+  {
+   "fieldname": "process_section_tab",
+   "fieldtype": "Tab Break",
+   "label": "Process Section"
+  },
+  {
+   "fieldname": "faq_section_tab",
+   "fieldtype": "Tab Break",
+   "label": "FAQ Section"
+  },
+  {
+   "fieldname": "cta_section_tab",
+   "fieldtype": "Tab Break",
+   "label": "CTA Section"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-03-04 10:48:45.574940",
+ "modified": "2026-03-16 14:49:55.749673",
  "modified_by": "Administrator",
  "module": "Next Edge Software",
  "name": "Home Page",
