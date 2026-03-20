@@ -634,6 +634,9 @@ const HeroSection = () => {
         `}</style>
       </section>
 
+
+
+
       {/* Modal with Image Slider - Dynamically loaded from child table */}
       {isModalOpen && content.modal_images && content.modal_images.length > 0 && (
         <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-sm">
@@ -641,7 +644,7 @@ const HeroSection = () => {
           <div className="absolute inset-0" onClick={closeModal}></div>
           
           {/* Modal content */}
-          <div className="relative bg-white rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden shadow-2xl">
+          <div className="relative bg-white rounded-2xl max-w-7xl w-full max-h-auto overflow-hidden shadow-2xl">
             {/* Close button */}
             <button
               onClick={closeModal}
@@ -653,7 +656,7 @@ const HeroSection = () => {
             {/* Image slider */}
             <div className="relative h-full">
               {/* Main image */}
-              <div className="relative h-[60vh] md:h-[70vh]">
+              <div className="relative h-full md:w-full">
                 <img
                   src={content.modal_images[currentImageIndex].attachment}
                   alt={content.modal_images[currentImageIndex].primary_value || "Gallery image"}
@@ -709,6 +712,8 @@ const HeroSection = () => {
           </div>
         </div>
       )}
+
+
     </>
   );
 };
