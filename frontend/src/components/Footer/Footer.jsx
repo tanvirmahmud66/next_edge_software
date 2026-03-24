@@ -993,17 +993,17 @@ const Footer = () => {
                   className="w-4 h-4 group-hover:scale-110 group-hover:rotate-12 transition-transform"
                   style={{ color: themeColors.accent2 }}
                 />
-                <span className="group-hover:translate-x-1 transition-transform">+1 (800) 123-4567</span>
+                <span className="group-hover:translate-x-1 transition-transform">+8801701744799</span>
               </a>
               <a
-                href="mailto:contact@nextedge.com"
+                href="mailto:nextedgesoftware@gmail.com"
                 className="flex items-center space-x-3 text-white/60 hover:text-white text-sm transition-colors group"
               >
                 <Mail
                   className="w-4 h-4 group-hover:scale-110 group-hover:rotate-12 transition-transform"
                   style={{ color: themeColors.accent1 }}
                 />
-                <span className="group-hover:translate-x-1 transition-transform">contact@nextedge.com</span>
+                <span className="group-hover:translate-x-1 transition-transform">nextedgesoftware@gmail.com</span>
               </a>
               <div className="flex items-start space-x-3 text-white/60 text-sm group">
                 <MapPin
@@ -1011,9 +1011,9 @@ const Footer = () => {
                   style={{ color: themeColors.secondary }}
                 />
                 <span>
-                  123 Innovation Street
+                  Rampura
                   <br />
-                  San Francisco, CA 94105
+                  Dhaka, Bangladesh
                 </span>
               </div>
             </div>

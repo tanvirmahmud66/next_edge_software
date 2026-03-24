@@ -4,6 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronRight, ShoppingCart, Building2, Plane, Stethoscope, Code, Globe, Settings, Wrench, GraduationCap, HeadphonesIcon, Shield, Mail, Phone, MapPin } from 'lucide-react';
 import { useTheme } from '../../hooks/useTheme';
+import logo from '../../assets/logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -171,6 +172,7 @@ const Navbar = () => {
         <div className="flex justify-between items-center h-16 lg:h-20">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center">
+            <img src={logo} alt="Next Edge Software Logo" className="h-8 w-auto mr-2" />
             <Link to="/" className="text-xl lg:text-2xl font-bold tracking-tight group">
               <span className="relative" style={{ color: themeColors.accent2 }}>
                 Next Edge
@@ -409,17 +411,17 @@ const Navbar = () => {
 
           {/* Contact Info */}
           <div className="mt-6 pt-4 space-y-3" style={{ borderTop: `1px solid ${themeColors.accent1}40` }}>
-            <a href="tel:+18001234567" className="flex items-center space-x-3 px-3 text-white/60 hover:text-white text-sm transition-colors">
+            <a href="tel:+8801701744799" className="flex items-center space-x-3 px-3 text-white/60 hover:text-white text-sm transition-colors">
               <Phone className="w-4 h-4" style={{ color: themeColors.accent2 }} />
-              <span>+1 (800) 123-4567</span>
+              <span>+8801701744799</span>
             </a>
-            <a href="mailto:contact@nextedge.com" className="flex items-center space-x-3 px-3 text-white/60 hover:text-white text-sm transition-colors">
+            <a href="mailto:nextedgesoftware@gmail.com" className="flex items-center space-x-3 px-3 text-white/60 hover:text-white text-sm transition-colors">
               <Mail className="w-4 h-4" style={{ color: themeColors.accent2 }} />
-              <span>contact@nextedge.com</span>
+              <span>nextedgesoftware@gmail.com</span>
             </a>
             <div className="flex items-center space-x-3 px-3 text-white/60 text-sm">
               <MapPin className="w-4 h-4" style={{ color: themeColors.accent2 }} />
-              <span>San Francisco, CA</span>
+              <span>Rampura, Dhaka, Bangladesh</span>
             </div>
           </div>
         </div>
