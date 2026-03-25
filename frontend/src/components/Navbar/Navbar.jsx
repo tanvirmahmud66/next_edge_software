@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, X, ChevronDown, ChevronRight, ShoppingCart, Building2, Plane, Stethoscope, Code, Globe, Settings, Wrench, GraduationCap, HeadphonesIcon, Shield, Mail, Phone, MapPin } from 'lucide-react';
 import { useTheme } from '../../hooks/useTheme';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/main_logo.png';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -399,7 +399,7 @@ const Navbar = () => {
           
           {/* Mobile CTA */}
           <Link
-            to="/get-started"
+            to="/contact-us"
             className="block text-center text-white px-3 py-3 rounded-md text-base font-semibold transition-all duration-200 mt-6 shadow-lg"
             style={{ 
               background: `linear-gradient(135deg, ${themeColors.accent2}, ${themeColors.accent1})`,
