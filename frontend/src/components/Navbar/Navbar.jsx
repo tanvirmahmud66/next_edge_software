@@ -85,51 +85,52 @@ const Navbar = () => {
   // Navigation structure with theme colors
   const navItems = [
     { id: 'home', name: 'Home', to: '/', hasDropdown: false },
-    { 
-      id: 'industry',
-      name: 'Industry Solutions', 
-      to: '/industry-solutions', 
-      hasDropdown: true,
-      columns: 1,
-      accent: themeColors.accent1,
-      dropdownItems: [
-        { 
-          category: 'Solutions by Industry',
-          items: [
-            { 
-              name: 'Web Application Development', 
-              to: '/web-applications', 
-              icon: <Globe className="w-4 h-4" />, 
-              description: 'Modern, responsive web applications' 
-            },
-            { 
-              name: 'E-Commerce Solutions', 
-              to: '/ecommerce-solutions', 
-              icon: <ShoppingCart className="w-4 h-4" />, 
-              description: 'Complete online store solutions' 
-            },
-            { 
-              name: 'Real Estate & Project Accounting', 
-              to: '/real-estate-accounting', 
-              icon: <Building2 className="w-4 h-4" />, 
-              description: 'Property and project management' 
-            },
-            { 
-              name: 'Visa & Travel Agency Management', 
-              to: '/visa-travel-management', 
-              icon: <Plane className="w-4 h-4" />, 
-              description: 'Travel and visa processing systems' 
-            },
-            { 
-              name: 'Clinic & Diagnostic Center Management', 
-              to: '/clinic-management', 
-              icon: <Stethoscope className="w-4 h-4" />, 
-              description: 'Healthcare practice management' 
-            },
-          ]
-        }
-      ]
-    },
+    { id: 'web-application', name: 'Web Application', to: '/web-applications', hasDropdown: false },
+    // { 
+    //   id: 'industry',
+    //   name: 'Industry Solutions', 
+    //   to: '/industry-solutions', 
+    //   hasDropdown: true,
+    //   columns: 1,
+    //   accent: themeColors.accent1,
+    //   dropdownItems: [
+    //     { 
+    //       category: 'Solutions by Industry',
+    //       items: [
+    //         { 
+    //           name: 'Web Application Development', 
+    //           to: '/web-applications', 
+    //           icon: <Globe className="w-4 h-4" />, 
+    //           description: 'Modern, responsive web applications' 
+    //         },
+    //         { 
+    //           name: 'E-Commerce Solutions', 
+    //           to: '/ecommerce-solutions', 
+    //           icon: <ShoppingCart className="w-4 h-4" />, 
+    //           description: 'Complete online store solutions' 
+    //         },
+    //         { 
+    //           name: 'Real Estate & Project Accounting', 
+    //           to: '/real-estate-accounting', 
+    //           icon: <Building2 className="w-4 h-4" />, 
+    //           description: 'Property and project management' 
+    //         },
+    //         { 
+    //           name: 'Visa & Travel Agency Management', 
+    //           to: '/visa-travel-management', 
+    //           icon: <Plane className="w-4 h-4" />, 
+    //           description: 'Travel and visa processing systems' 
+    //         },
+    //         { 
+    //           name: 'Clinic & Diagnostic Center Management', 
+    //           to: '/clinic-management', 
+    //           icon: <Stethoscope className="w-4 h-4" />, 
+    //           description: 'Healthcare practice management' 
+    //         },
+    //       ]
+    //     }
+    //   ]
+    // },
     { id: 'about', name: 'About Us', to: '/about-us', hasDropdown: false },
     { id: 'contact', name: 'Contact Us', to: '/contact-us', hasDropdown: false },
   ];
