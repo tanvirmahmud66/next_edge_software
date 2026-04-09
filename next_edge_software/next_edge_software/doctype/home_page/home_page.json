@@ -18,6 +18,8 @@
   "hero_image",
   "modal_images_section",
   "modal_images",
+  "section_break_oguv",
+  "brochure",
   "services_section_tab",
   "services_section_section",
   "service_badge",
@@ -280,13 +282,22 @@
    "fieldname": "cta_section_tab",
    "fieldtype": "Tab Break",
    "label": "CTA Section"
+  },
+  {
+   "fieldname": "section_break_oguv",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "brochure",
+   "fieldtype": "Attach",
+   "label": "Brochure"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "issingle": 1,
  "links": [],
- "modified": "2026-03-16 14:49:55.749673",
+ "modified": "2026-04-09 23:27:23.599887",
  "modified_by": "Administrator",
  "module": "Next Edge Software",
  "name": "Home Page",

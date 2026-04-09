@@ -11,6 +11,7 @@
   "phone_number",
   "company_name",
   "column_break_lotr",
+  "brochure_download",
   "service_interested_in",
   "message",
   "status"
@@ -68,12 +69,20 @@
    "label": "Status",
    "options": "New\nContacted\nQualified\nProposal Sent\nNegotiation\nConverted\nLost",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "brochure_download",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Brochure Download"
   }
  ],
  "grid_page_length": 50,
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-03-02 14:20:02.312763",
+ "modified": "2026-04-10 00:08:35.903512",
  "modified_by": "Administrator",
  "module": "Next Edge Software",
  "name": "Website Lead",

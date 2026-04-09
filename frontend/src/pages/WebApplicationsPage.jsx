@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect, useRef } from 'react';
 import {
   Globe, ArrowRight, Play, ShoppingCart, BarChart3, Users, Briefcase,
@@ -18,7 +19,7 @@ const WebApplicationsPage = () => {
   const [openFaqIndex, setOpenFaqIndex] = useState(null);
   const sectionRefs = useRef({});
 
-  // Theme colors
+  // Theme colors (same as ProcessSection)
   const colors = {
     primary: '#0F0F0F',
     secondary: '#232D3F',
@@ -37,7 +38,6 @@ const WebApplicationsPage = () => {
       'Real Estate': <Building2 className="w-6 h-6" />,
     };
     
-    // Find matching icon or return default
     const matchingKey = Object.keys(iconMap).find(key => 
       typeName.toLowerCase().includes(key.toLowerCase())
     );
@@ -60,7 +60,6 @@ const WebApplicationsPage = () => {
       'Deployment': <Rocket className="w-6 h-6" />,
     };
     
-    // Find matching icon or return default
     const matchingKey = Object.keys(iconMap).find(key => 
       featureName.toLowerCase().includes(key.toLowerCase())
     );
@@ -81,7 +80,6 @@ const WebApplicationsPage = () => {
       'UI/UX': <PenTool className="w-6 h-6" />,
     };
     
-    // Find matching icon or return default
     const matchingKey = Object.keys(iconMap).find(key => 
       processName.toLowerCase().includes(key.toLowerCase())
     );
@@ -146,7 +144,6 @@ const WebApplicationsPage = () => {
 
   const fetchTypesData = async () => {
     try {
-      // First fetch all types
       const response = await fetch('/api/resource/Web Application Type?fields=["name", "type_name", "description", "image"]', {
         method: 'GET',
         headers: {
@@ -162,7 +159,6 @@ const WebApplicationsPage = () => {
       const result = await response.json();
       
       if (result.data && result.data.length > 0) {
-        // For each type, fetch its complete details including child table items
         const typesWithDetails = await Promise.all(
           result.data.map(async (type) => {
             try {
@@ -195,7 +191,6 @@ const WebApplicationsPage = () => {
 
   const fetchFeaturesData = async () => {
     try {
-      // First fetch all features
       const response = await fetch('/api/resource/Feature?fields=["name", "feature_name", "description"]', {
         method: 'GET',
         headers: {
@@ -211,7 +206,6 @@ const WebApplicationsPage = () => {
       const result = await response.json();
       
       if (result.data && result.data.length > 0) {
-        // For each feature, fetch its complete details including child table items
         const featuresWithDetails = await Promise.all(
           result.data.map(async (feature) => {
             try {
@@ -244,7 +238,6 @@ const WebApplicationsPage = () => {
 
   const fetchProcessData = async () => {
     try {
-      // First fetch all process steps
       const response = await fetch('/api/resource/Development Process?fields=["name", "process_name", "description", "process_step", "icon"]', {
         method: 'GET',
         headers: {
@@ -260,7 +253,6 @@ const WebApplicationsPage = () => {
       const result = await response.json();
       
       if (result.data && result.data.length > 0) {
-        // For each process, fetch its complete details including child table items
         const processesWithDetails = await Promise.all(
           result.data.map(async (process) => {
             try {
@@ -284,7 +276,6 @@ const WebApplicationsPage = () => {
           })
         );
         
-        // Sort by process_step
         const sortedProcesses = processesWithDetails.sort((a, b) => 
           (a.process_step || 0) - (b.process_step || 0)
         );
@@ -325,8 +316,24 @@ const WebApplicationsPage = () => {
   // Loading state
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: colors.primary }}>
-        <div className="text-center">
+      <div 
+        className="min-h-screen flex items-center justify-center relative overflow-hidden"
+        style={{ 
+          background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 50%, ${colors.accent1} 100%)`
+        }}
+      >
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+              backgroundSize: "40px 40px",
+            }}
+          />
+        </div>
+        
+        <div className="text-center relative z-10">
           <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 mx-auto mb-4" style={{ borderColor: colors.accent2 }}></div>
           <p className="text-white">Loading page data...</p>
         </div>
@@ -337,8 +344,24 @@ const WebApplicationsPage = () => {
   // Error state
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ backgroundColor: colors.primary }}>
-        <div className="text-center text-white max-w-md px-4">
+      <div 
+        className="min-h-screen flex items-center justify-center relative overflow-hidden"
+        style={{ 
+          background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 50%, ${colors.accent1} 100%)`
+        }}
+      >
+        {/* Background Pattern */}
+        <div className="absolute inset-0 opacity-10">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+              backgroundSize: "40px 40px",
+            }}
+          />
+        </div>
+        
+        <div className="text-center text-white max-w-md px-4 relative z-10">
           <HelpCircle className="w-16 h-16 mx-auto mb-4" style={{ color: colors.accent2 }} />
           <h2 className="text-2xl font-bold mb-2">Error Loading Page</h2>
           <p className="text-white/70 mb-4">{error}</p>
@@ -358,30 +381,39 @@ const WebApplicationsPage = () => {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: colors.primary }}>
+    <div 
+      className="min-h-screen relative overflow-hidden"
+      style={{ 
+        background: `linear-gradient(135deg, ${colors.primary} 0%, ${colors.secondary} 50%, ${colors.accent1} 100%)`
+      }}
+    >
+      {/* Background Pattern - Same as ProcessSection */}
+      <div className="absolute inset-0 opacity-10">
+        <div 
+          className="absolute inset-0"
+          style={{
+            backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
+            backgroundSize: '40px 40px'
+          }}
+        />
+      </div>
+
+      {/* Decorative elements - Same as ProcessSection */}
+      <div 
+        className="absolute top-0 left-0 w-96 h-96 rounded-full mix-blend-overlay filter blur-3xl animate-pulse"
+        style={{ background: colors.accent2, opacity: 0.2 }}
+      ></div>
+      <div 
+        className="absolute bottom-0 right-0 w-96 h-96 rounded-full mix-blend-overlay filter blur-3xl animate-pulse animation-delay-2000"
+        style={{ background: colors.accent1, opacity: 0.2 }}
+      ></div>
+      <div 
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full mix-blend-overlay filter blur-3xl animate-pulse animation-delay-4000"
+        style={{ background: colors.primary, opacity: 0.1 }}
+      ></div>
+
       {/* Hero Section */}
       <section ref={el => sectionRefs.current['hero'] = el} className="relative pt-32 lg:pt-40 pb-20 lg:pb-28 overflow-hidden">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-              backgroundSize: "40px 40px",
-            }}
-          />
-        </div>
-
-        {/* Animated Background Elements */}
-        <div
-          className="absolute top-20 left-20 w-96 h-96 rounded-full mix-blend-overlay filter blur-3xl animate-pulse"
-          style={{ background: colors.accent2, opacity: 0.2 }}
-        ></div>
-        <div
-          className="absolute bottom-20 right-20 w-96 h-96 rounded-full mix-blend-overlay filter blur-3xl animate-pulse animation-delay-2000"
-          style={{ background: colors.accent1, opacity: 0.2 }}
-        ></div>
-
         {/* Floating Elements */}
         <div className="absolute top-40 right-20 hidden lg:block animate-float">
           <div className="relative">
@@ -478,7 +510,7 @@ const WebApplicationsPage = () => {
       </section>
 
       {/* Types Section - Dynamic */}
-      <section ref={el => sectionRefs.current['types'] = el} className="py-20 lg:py-28" style={{ background: `${colors.primary}20` }}>
+      <section ref={el => sectionRefs.current['types'] = el} className="py-20 lg:py-28 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -504,31 +536,20 @@ const WebApplicationsPage = () => {
                 return (
                   <div
                     key={type.name}
-                    className={`group relative rounded-xl overflow-hidden transition-all duration-700 transform hover:-translate-y-2 hover:shadow-2xl ${
+                    className={`group relative rounded-xl backdrop-blur-sm p-6 transition-all duration-700 transform hover:-translate-y-2 hover:shadow-2xl border ${
                       isVisible['types'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                     }`}
-                    style={{ transitionDelay: `${index * 100}ms` }}
+                    style={{ 
+                      transitionDelay: `${index * 100}ms`,
+                      background: `linear-gradient(135deg, ${colors.primary}80, ${colors.secondary}80)`,
+                      borderColor: `${accentColor}40`
+                    }}
                   >
-                    {/* Background Image */}
-                    <div className="absolute inset-0">
-                      <img
-                        src={type.image || 'https://images.unsplash.com/photo-1557821552-17105176677c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80'}
-                        alt={type.type_name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div
-                        className="absolute inset-0"
-                        style={{
-                          background: `linear-gradient(135deg, ${accentColor}CC 0%, ${colors.primary}CC 100%)`
-                        }}
-                      ></div>
-                    </div>
-
                     {/* Content */}
-                    <div className="relative p-6 h-full flex flex-col min-h-[320px]">
+                    <div className="relative h-full flex flex-col">
                       <div className="flex items-center gap-3 mb-4">
                         <div
-                          className="p-2 rounded-lg backdrop-blur-sm border border-white/20"
+                          className="p-2 rounded-lg"
                           style={{ background: `${accentColor}30`, color: 'white' }}
                         >
                           {getIconForType(type.type_name)}
@@ -543,7 +564,7 @@ const WebApplicationsPage = () => {
                         <ul className="space-y-2 mb-4">
                           {typeItems.map((item, i) => (
                             <li key={i} className="flex items-center gap-2 text-sm text-white/80">
-                              <div className="w-1.5 h-1.5 rounded-full bg-white"></div>
+                              <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: accentColor }}></div>
                               <span>{item.value || item}</span>
                             </li>
                           ))}
@@ -562,17 +583,27 @@ const WebApplicationsPage = () => {
                       </a>
                     </div>
 
-                    {/* Hover Effect */}
-                    <div
-                      className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300 pointer-events-none"
-                      style={{ background: accentColor }}
+                    {/* Bottom Accent Line */}
+                    <div 
+                      className="absolute bottom-0 left-0 right-0 h-1 rounded-b-xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                      style={{ 
+                        background: `linear-gradient(90deg, ${accentColor}, ${accentColor}CC, transparent)`
+                      }}
+                    ></div>
+
+                    {/* Hover Glow Effect */}
+                    <div 
+                      className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"
+                      style={{ 
+                        background: accentColor,
+                        filter: 'blur(20px)'
+                      }}
                     ></div>
                   </div>
                 );
               })}
             </div>
           ) : (
-            // Fallback message if no types are found
             <div className="text-center text-white/60 py-12">
               <p>No application types available at the moment.</p>
             </div>
@@ -581,7 +612,7 @@ const WebApplicationsPage = () => {
       </section>
 
       {/* Features Section - Dynamic */}
-      <section ref={el => sectionRefs.current['features'] = el} className="py-20 lg:py-28">
+      <section ref={el => sectionRefs.current['features'] = el} className="py-20 lg:py-28 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -607,40 +638,21 @@ const WebApplicationsPage = () => {
                 return (
                   <div
                     key={feature.name}
-                    className={`group relative rounded-xl overflow-hidden transition-all duration-700 transform hover:-translate-y-2 hover:shadow-2xl ${
+                    className={`group relative rounded-xl backdrop-blur-sm p-6 transition-all duration-700 transform hover:-translate-y-2 hover:shadow-2xl border ${
                       isVisible['features'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
                     }`}
-                    style={{ transitionDelay: `${index * 100}ms` }}
+                    style={{ 
+                      transitionDelay: `${index * 100}ms`,
+                      background: `linear-gradient(135deg, ${colors.primary}80, ${colors.secondary}80)`,
+                      borderColor: `${accentColor}40`
+                    }}
                   >
-                    {/* Background Image - Using Unsplash images based on feature name */}
-                    <div className="absolute inset-0">
-                      <img
-                        src={`https://images.unsplash.com/photo-${
-                          index % 6 === 0 ? '1512941937669-90a1b58e7e9c' :
-                          index % 6 === 1 ? '1460925895917-afdab827c52f' :
-                          index % 6 === 2 ? '1555949963-aa79dcee981c' :
-                          index % 6 === 3 ? '1451187580459-43490279c0fa' :
-                          index % 6 === 4 ? '1562577309-4932fdd64cd1' :
-                          '1558494949-ef010cbdcc31'
-                        }?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`}
-                        alt={feature.feature_name}
-                        className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                      />
-                      <div
-                        className="absolute inset-0"
-                        style={{
-                          background: `linear-gradient(135deg, ${accentColor}99 0%, ${colors.primary}CC 100%)`
-                        }}
-                      ></div>
-                    </div>
-
                     {/* Content */}
-                    <div className="relative p-6 h-full flex flex-col min-h-[280px]">
+                    <div className="relative h-full flex flex-col">
                       <div
-                        className="w-12 h-12 rounded-lg flex items-center justify-center mb-4 backdrop-blur-sm border"
+                        className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
                         style={{
                           background: `${accentColor}30`,
-                          borderColor: `${accentColor}60`,
                           color: 'white'
                         }}
                       >
@@ -655,24 +667,40 @@ const WebApplicationsPage = () => {
                         <ul className="space-y-2 mb-4">
                           {featureItems.map((item, i) => (
                             <li key={i} className="flex items-center gap-2 text-sm text-white/80">
-                              <CheckCircle className="w-4 h-4" style={{ color: 'white' }} />
+                              <CheckCircle className="w-4 h-4" style={{ color: accentColor }} />
                               <span>{item.value || item}</span>
                             </li>
                           ))}
                         </ul>
                       ) : (
                         <div className="flex items-center gap-2 text-white/80 mt-auto">
-                          <CheckCircle className="w-4 h-4" style={{ color: 'white' }} />
+                          <CheckCircle className="w-4 h-4" style={{ color: accentColor }} />
                           <span className="text-sm">Included in all projects</span>
                         </div>
                       )}
                     </div>
+
+                    {/* Bottom Accent Line */}
+                    <div 
+                      className="absolute bottom-0 left-0 right-0 h-1 rounded-b-xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                      style={{ 
+                        background: `linear-gradient(90deg, ${accentColor}, ${accentColor}CC, transparent)`
+                      }}
+                    ></div>
+
+                    {/* Hover Glow Effect */}
+                    <div 
+                      className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"
+                      style={{ 
+                        background: accentColor,
+                        filter: 'blur(20px)'
+                      }}
+                    ></div>
                   </div>
                 );
               })}
             </div>
           ) : (
-            // Fallback message if no features are found
             <div className="text-center text-white/60 py-12">
               <p>No features available at the moment.</p>
             </div>
@@ -680,8 +708,8 @@ const WebApplicationsPage = () => {
         </div>
       </section>
 
-      {/* Process Section - Now Dynamic */}
-      <section ref={el => sectionRefs.current['process'] = el} className="py-20 lg:py-28">
+      {/* Process Section - Dynamic */}
+      <section ref={el => sectionRefs.current['process'] = el} className="py-20 lg:py-28 relative z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -699,96 +727,84 @@ const WebApplicationsPage = () => {
 
           {/* Dynamic Process Timeline */}
           {processData.length > 0 ? (
-            <div className="relative">
-              {/* Connection Line */}
-              <div className="absolute top-1/2 left-0 right-0 h-0.5 hidden lg:block"
-                   style={{ background: `linear-gradient(90deg, ${colors.accent2}, ${colors.accent1}, ${colors.secondary}, ${colors.primary})` }}>
-              </div>
-
-              <div className="grid lg:grid-cols-3 gap-6">
-                {processData.map((process, index) => {
-                  const accentColor = getAccentColor(index);
-                  const processItems = process.process_items || [];
-                  
-                  return (
-                    <div
-                      key={process.name}
-                      className={`group relative rounded-xl overflow-hidden transition-all duration-700 transform hover:-translate-y-2 hover:shadow-2xl ${
-                        isVisible['process'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-                      }`}
-                      style={{ transitionDelay: `${index * 100}ms` }}
+            <div className="grid lg:grid-cols-3 gap-6">
+              {processData.map((process, index) => {
+                const accentColor = getAccentColor(index);
+                const processItems = process.process_items || [];
+                
+                return (
+                  <div
+                    key={process.name}
+                    className={`group relative rounded-xl backdrop-blur-sm p-6 transition-all duration-700 transform hover:-translate-y-2 hover:shadow-2xl border ${
+                      isVisible['process'] ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+                    }`}
+                    style={{ 
+                      transitionDelay: `${index * 100}ms`,
+                      background: `linear-gradient(135deg, ${colors.primary}80, ${colors.secondary}80)`,
+                      borderColor: `${accentColor}40`
+                    }}
+                  >
+                    {/* Step Number Badge */}
+                    <div 
+                      className="absolute -top-3 -right-3 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg transition-transform group-hover:scale-110"
+                      style={{ 
+                        background: `linear-gradient(135deg, ${accentColor}, ${accentColor}CC)`,
+                        boxShadow: `0 4px 12px ${accentColor}80`
+                      }}
                     >
-                      {/* Background Image */}
-                      <div className="absolute inset-0">
-                        <img
-                          src={`https://images.unsplash.com/photo-${
-                            index % 6 === 0 ? '1552664730-d307ca884978' :
-                            index % 6 === 1 ? '1586717791821-3f44a563fa4c' :
-                            index % 6 === 2 ? '1558494949-ef010cbdcc31' :
-                            index % 6 === 3 ? '1555949963-aa79dcee981c' :
-                            index % 6 === 4 ? '1451187580459-43490279c0fa' :
-                            '1558494949-ef010cbdcc31'
-                          }?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80`}
-                          alt={process.process_name}
-                          className="w-full h-full object-cover"
-                        />
-                        <div
-                          className="absolute inset-0"
-                          style={{
-                            background: `linear-gradient(135deg, ${accentColor}CC 0%, ${colors.primary}CC 100%)`
-                          }}
-                        ></div>
-                      </div>
-
-                      {/* Content */}
-                      <div className="relative p-6">
-                        {/* Step Number */}
-                        <div
-                          className="absolute top-4 right-4 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg backdrop-blur-sm border"
-                          style={{
-                            background: `${accentColor}30`,
-                            borderColor: `${accentColor}60`
-                          }}
-                        >
-                          {formatStepNumber(process.process_step || (index + 1))}
-                        </div>
-
-                        {/* Icon */}
-                        <div
-                          className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
-                          style={{ background: `${accentColor}30`, color: 'white' }}
-                        >
-                          {process.icon ? (
-                            <img src={process.icon} alt={process.process_name} className="w-6 h-6" />
-                          ) : (
-                            getIconForProcess(process.process_name)
-                          )}
-                        </div>
-
-                        <h3 className="text-xl font-bold text-white mb-2">{process.process_name}</h3>
-                        <p className="text-white/90 text-sm mb-4">{process.description}</p>
-
-                        {/* Process Items from child table */}
-                        {processItems && processItems.length > 0 ? (
-                          <ul className="space-y-2">
-                            {processItems.map((item, i) => (
-                              <li key={i} className="flex items-center gap-2 text-sm text-white/80">
-                                <CheckCircle className="w-4 h-4" style={{ color: 'white' }} />
-                                <span>{item.value || item}</span>
-                              </li>
-                            ))}
-                          </ul>
-                        ) : (
-                          <div className="text-white/50 text-sm italic">No details listed</div>
-                        )}
-                      </div>
+                      {formatStepNumber(process.process_step || (index + 1))}
                     </div>
-                  );
-                })}
-              </div>
+
+                    {/* Icon */}
+                    <div
+                      className="w-12 h-12 rounded-lg flex items-center justify-center mb-4"
+                      style={{ background: `${accentColor}30`, color: 'white' }}
+                    >
+                      {process.icon ? (
+                        <img src={process.icon} alt={process.process_name} className="w-6 h-6" />
+                      ) : (
+                        getIconForProcess(process.process_name)
+                      )}
+                    </div>
+
+                    <h3 className="text-xl font-bold text-white mb-2">{process.process_name}</h3>
+                    <p className="text-white/90 text-sm mb-4">{process.description}</p>
+
+                    {/* Process Items from child table */}
+                    {processItems && processItems.length > 0 ? (
+                      <ul className="space-y-2">
+                        {processItems.map((item, i) => (
+                          <li key={i} className="flex items-center gap-2 text-sm text-white/80">
+                            <CheckCircle className="w-4 h-4" style={{ color: accentColor }} />
+                            <span>{item.value || item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <div className="text-white/50 text-sm italic">No details listed</div>
+                    )}
+
+                    {/* Bottom Accent Line */}
+                    <div 
+                      className="absolute bottom-0 left-0 right-0 h-1 rounded-b-xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+                      style={{ 
+                        background: `linear-gradient(90deg, ${accentColor}, ${accentColor}CC, transparent)`
+                      }}
+                    ></div>
+
+                    {/* Hover Glow Effect */}
+                    <div 
+                      className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"
+                      style={{ 
+                        background: accentColor,
+                        filter: 'blur(20px)'
+                      }}
+                    ></div>
+                  </div>
+                );
+              })}
             </div>
           ) : (
-            // Fallback message if no process steps are found
             <div className="text-center text-white/60 py-12">
               <p>No development process steps available at the moment.</p>
             </div>
@@ -798,7 +814,7 @@ const WebApplicationsPage = () => {
 
       {/* FAQ Section */}
       {pageData?.faq_items && pageData.faq_items.length > 0 && (
-        <section ref={el => sectionRefs.current['faq'] = el} className="py-20 lg:py-28" style={{ background: `${colors.primary}20` }}>
+        <section ref={el => sectionRefs.current['faq'] = el} className="py-20 lg:py-28 relative z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Section Header */}
             <div className="text-center max-w-3xl mx-auto mb-16">
@@ -815,7 +831,7 @@ const WebApplicationsPage = () => {
             </div>
 
             {/* FAQ Accordion */}
-            <div className="space-y-4">
+            <div className="space-y-4 max-w-3xl mx-auto">
               {pageData.faq_items.map((faq, index) => (
                 <div
                   key={index}
@@ -861,7 +877,7 @@ const WebApplicationsPage = () => {
             </div>
 
             {/* Still have questions */}
-            <div className="text-center mt-8">
+            <div className="text-center mt-12">
               <p className="text-white/60 text-sm mb-3">Still have questions about web development?</p>
               <a
                 href="#contact"
@@ -881,25 +897,10 @@ const WebApplicationsPage = () => {
       {/* CTA Section */}
       {pageData?.cta_badge && (
         <section className="py-20 lg:py-28 relative overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            {pageData.hero_image ? (
-              <img
-                src={pageData.hero_image}
-                alt="Web Development"
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              <img
-                src="https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80"
-                alt="Web Development"
-                className="w-full h-full object-cover"
-              />
-            )}
-            <div className="absolute inset-0" style={{
-              background: `linear-gradient(135deg, ${colors.primary}CC 0%, ${colors.secondary}CC 100%)`
-            }}></div>
-          </div>
+          {/* Background overlay for contrast */}
+          <div className="absolute inset-0" style={{
+            background: `linear-gradient(135deg, ${colors.primary}CC 0%, ${colors.secondary}CC 100%)`
+          }}></div>
 
           {/* Decorative Elements */}
           <div className="absolute top-20 left-20 w-64 h-64 rounded-full mix-blend-overlay filter blur-3xl"
@@ -965,7 +966,7 @@ const WebApplicationsPage = () => {
 
             {/* Contact Info */}
             {(pageData.phone || pageData.email || pageData.web_url) && (
-              <div className="grid md:grid-cols-3 gap-6 pt-8" style={{ borderTop: `1px solid ${colors.accent1}60` }}>
+              <div className="grid md:grid-cols-3 gap-6 pt-8 max-w-2xl mx-auto" style={{ borderTop: `1px solid ${colors.accent1}60` }}>
                 {pageData.phone && (
                   <a
                     href={`tel:${pageData.phone}`}
@@ -1031,17 +1032,12 @@ const WebApplicationsPage = () => {
         .animation-delay-2000 {
           animation-delay: 2s;
         }
+        .animation-delay-4000 {
+          animation-delay: 4s;
+        }
       `}</style>
     </div>
   );
 };
 
 export default WebApplicationsPage;
-
-
-
-
-
-
-
-
