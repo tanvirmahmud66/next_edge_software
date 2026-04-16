@@ -12,6 +12,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.2.0",
+    "framer-motion": "^12.38.0",
     "frappe-react-sdk": "^1.14.0",
     "lucide-react": "^0.574.0",
     "react": "^19.2.0",

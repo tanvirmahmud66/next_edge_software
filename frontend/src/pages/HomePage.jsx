@@ -1,10 +1,11 @@
-import React, { useState, useEffect, useRef } from 'react';
-import HeroSection from '../components/Hero/HeroSection';
-import ServicesSection from '../components/Services/ServicesSection';
-import IndustriesSection from '../components/Industries/IndustriesSection';
-import ProcessSection from '../components/Process/ProcessSection';
-import FaqSection from '../components/Faq/FaqSection';
-import CtaSection from '../components/Cta/CtaSection';
+import React, { useState, useEffect, useRef } from "react";
+import HeroSection from "../components/Hero/HeroSection";
+import ServicesSection from "../components/Services/ServicesSection";
+import IndustriesSection from "../components/Industries/IndustriesSection";
+import ProcessSection from "../components/Process/ProcessSection";
+import FaqSection from "../components/Faq/FaqSection";
+import CtaSection from "../components/Cta/CtaSection";
+import ShowcaseGrid from "../components/ScreenshotShowcase/ScreenshotShowcase";
 
 const HomePage = () => {
   const [isVisible, setIsVisible] = useState({});
@@ -19,11 +20,11 @@ const HomePage = () => {
         (entries) => {
           entries.forEach((entry) => {
             if (entry.isIntersecting) {
-              setIsVisible(prev => ({ ...prev, [key]: true }));
+              setIsVisible((prev) => ({ ...prev, [key]: true }));
             }
           });
         },
-        { threshold: 0.2 }
+        { threshold: 0.2 },
       );
 
       if (sectionRefs.current[key]) {
@@ -32,7 +33,7 @@ const HomePage = () => {
     });
 
     return () => {
-      Object.values(observers).forEach(observer => observer.disconnect());
+      Object.values(observers).forEach((observer) => observer.disconnect());
     };
   }, []);
 
@@ -40,11 +41,13 @@ const HomePage = () => {
     <div className="bg-[#0A2647] min-h-screen">
       <HeroSection />
       <ServicesSection
-        sectionRef={el => sectionRefs.current['services'] = el}
-        isVisible={isVisible['services']}
+        sectionRef={(el) => (sectionRefs.current["services"] = el)}
+        isVisible={isVisible["services"]}
       />
+
       <IndustriesSection />
       <ProcessSection />
+      <ShowcaseGrid />
       <FaqSection />
       <CtaSection />
     </div>
