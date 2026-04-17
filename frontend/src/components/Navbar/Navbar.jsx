@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import { useTheme } from "../../hooks/useTheme";
 import logo from "../../assets/main_logo.png";
+import full_logo from "../../assets/full_logo.png";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -557,20 +558,25 @@ const Navbar = () => {
           <div className="flex justify-between items-center h-16 lg:h-20">
             {/* Logo */}
             <div className="flex-shrink-0 flex items-center">
-              <img
+              {/* <img
                 src={logo}
                 alt="Next Edge Software Logo"
                 className="h-8 w-auto mr-2"
-              />
+              /> */}
               <Link
                 to="/"
-                className="text-xl lg:text-2xl font-bold tracking-tight group cursor-pointer"
+                className="text-xl lg:text-2xl flex items-center gap-1 font-bold tracking-tight group cursor-pointer"
               >
                 <span
                   className="relative"
                   style={{ color: themeColors.accent2 }}
                 >
-                  Next Edge
+                  <img
+                    src={full_logo}
+                    alt="Next Edge Software Logo"
+                    className="h-8 w-auto mr-2"
+                  />
+                  {/* Next Edge */}
                   <span
                     className="absolute -bottom-1 left-0 w-0 h-0.5 group-hover:w-full transition-all duration-300"
                     style={{ backgroundColor: themeColors.accent2 }}

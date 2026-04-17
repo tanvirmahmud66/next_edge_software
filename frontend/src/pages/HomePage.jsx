@@ -46,8 +46,8 @@ const HomePage = () => {
       />
 
       <IndustriesSection />
-      <ProcessSection />
       <ShowcaseGrid />
+      <ProcessSection />
       <FaqSection />
       <CtaSection />
     </div>
