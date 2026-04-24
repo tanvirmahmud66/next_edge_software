@@ -513,6 +513,7 @@
 import React, { useState, useEffect } from 'react';
 import { Rocket, Target, BarChart3, Code, Shield, Heart, CheckCircle, Users, Brain, Cpu, Zap, Globe, Clock } from 'lucide-react';
 import { useTheme } from '../../hooks/useTheme';
+import { useHomePage } from '../../hooks/useHomePage';
 
 const ProcessSection = () => {
   // Use theme hook
@@ -522,13 +523,12 @@ const ProcessSection = () => {
   const [processSteps, setProcessSteps] = useState([]);
   const [processLoading, setProcessLoading] = useState(true);
   const [processError, setProcessError] = useState(null);
-  
-  // State for home page content (badge, title, subtitle)
-  const [homePageContent, setHomePageContent] = useState({
-    process_badge: 'Our Process',
-    process_title: 'From Idea to Impact',
-    process_subtitle: 'A systematic approach that ensures quality, transparency, and successful delivery.'
-  });
+  const { homePageData } = useHomePage();
+  const homePageContent = {
+    process_badge: homePageData?.process_badge || 'Our Process',
+    process_title: homePageData?.process_title || 'From Idea to Impact',
+    process_subtitle: homePageData?.process_subtitle || 'A systematic approach that ensures quality, transparency, and successful delivery.'
+  };
 
   // Helper function to split title and color the last word
   const formatTitle = (title) => {
@@ -590,36 +590,6 @@ const ProcessSection = () => {
     'maintenance': <Clock className="w-6 h-6" />,
     'default': <Target className="w-6 h-6" />
   };
-
-  // Fetch home page content (single doctype) using REST API
-  useEffect(() => {
-    const fetchHomePageContent = async () => {
-      try {
-        console.log('Fetching home page content...');
-        const response = await fetch('/api/resource/Home Page/Home Page');
-        
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        
-        const data = await response.json();
-        console.log('Home page data:', data);
-        
-        if (data.data) {
-          setHomePageContent({
-            process_badge: data.data.process_badge || 'Our Process',
-            process_title: data.data.process_title || 'From Idea to Impact',
-            process_subtitle: data.data.process_subtitle || 'A systematic approach that ensures quality, transparency, and successful delivery.'
-          });
-        }
-      } catch (err) {
-        console.error('Error fetching home page content:', err);
-        // Keep default values
-      }
-    };
-
-    fetchHomePageContent();
-  }, []);
 
   // Fetch process steps from Development Process doctype
   useEffect(() => {
@@ -1059,7 +1029,6 @@ const ProcessSection = () => {
 };
 
 export default ProcessSection;
-
 
 
 

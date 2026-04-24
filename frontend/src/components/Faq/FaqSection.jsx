@@ -402,50 +402,17 @@
 
 
 // FaqSection.jsx
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { MessageCircle, ChevronRight, HelpCircle } from 'lucide-react';
 import { useTheme } from '../../hooks/useTheme';
+import { useHomePage } from '../../hooks/useHomePage';
 
 const FaqSection = () => {
   const [activeTab, setActiveTab] = useState(null);
-  const [homePageData, setHomePageData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   
   // Use theme hook
   const { colors: themeColors, loading: themeLoading, error: themeError, refreshTheme } = useTheme();
-
-  useEffect(() => {
-    fetchHomePageData();
-  }, []);
-
-  const fetchHomePageData = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch('/api/resource/Home%20Page/Home%20Page', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const data = await response.json();
-      
-      if (data.data) {
-        setHomePageData(data.data);
-        setError(null);
-      }
-    } catch (err) {
-      console.error('Error fetching home page data:', err);
-      setError('Failed to load FAQ content');
-    } finally {
-      setLoading(false);
-    }
-  };
+  const { homePageData, loading, error, refreshHomePage } = useHomePage();
 
   // Helper function to split title and color the last word
   const formatTitle = (title) => {
@@ -570,7 +537,7 @@ const FaqSection = () => {
           <button 
             onClick={() => {
               refreshTheme();
-              fetchHomePageData();
+              refreshHomePage();
             }}
             className="bg-white/20 hover:bg-white/30 px-2 py-1 rounded text-xs transition-colors"
           >
@@ -813,7 +780,6 @@ const FaqSection = () => {
 };
 
 export default FaqSection;
-
 
 
 

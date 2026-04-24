@@ -453,6 +453,8 @@ import {
 import { Link } from "react-router-dom"; // For React Router
 // import Link from "next/link"; // For Next.js
 import { useTheme } from "../../hooks/useTheme";
+import { useHomePage } from "../../hooks/useHomePage";
+import OptimizedImage from "../ui/OptimizedImage";
 
 const HeroSection = () => {
   const {
@@ -462,20 +464,13 @@ const HeroSection = () => {
     error: themeError,
     refreshTheme,
   } = useTheme();
-  
-  const [homePageData, setHomePageData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const { homePageData, loading, error, refreshHomePage } = useHomePage();
   
   // Modal state
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [slideDirection, setSlideDirection] = useState('right');
-
-  useEffect(() => {
-    fetchHomePageData();
-  }, []);
 
   // Modal control functions
   const openModal = () => {
@@ -531,34 +526,6 @@ const HeroSection = () => {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [isModalOpen, nextImage, previousImage]);
-
-  const fetchHomePageData = async () => {
-    try {
-      setLoading(true);
-      const response = await fetch('/api/resource/Home%20Page/Home%20Page', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const data = await response.json();
-      
-      if (data.data) {
-        setHomePageData(data.data);
-        setError(null);
-      }
-    } catch (err) {
-      console.error('Error fetching home page data:', err);
-      setError('Failed to load home page content');
-    } finally {
-      setLoading(false);
-    }
-  };
 
   // Default content in case data is not available
   const defaultContent = {
@@ -804,7 +771,7 @@ const HeroSection = () => {
             <button
               onClick={() => {
                 refreshTheme();
-                fetchHomePageData();
+                refreshHomePage();
               }}
               className="bg-white/20 hover:bg-white/30 px-2 py-1 rounded text-xs transition-colors"
             >
@@ -904,19 +871,25 @@ const HeroSection = () => {
             <div className="relative hidden lg:block opacity-0 animate-fade-in-right stagger-2">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl transition-transform duration-700 hover:scale-105">
                 {content.hero_image ? (
-                  <img
+                  <OptimizedImage
                     src={content.hero_image.startsWith('http') ? content.hero_image : content.hero_image}
                     alt="Hero section"
                     className="w-full h-auto transition-transform duration-700"
-                    onError={(e) => {
-                      e.target.src = "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
-                    }}
+                    fallbackSrc="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                    widths={[640, 960, 1280]}
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    fetchPriority="high"
+                    loading="eager"
                   />
                 ) : (
-                  <img
+                  <OptimizedImage
                     src="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                     alt="Team working on software development"
                     className="w-full h-auto"
+                    widths={[640, 960, 1280]}
+                    sizes="(min-width: 1024px) 50vw, 100vw"
+                    fetchPriority="high"
+                    loading="eager"
                   />
                 )}
               </div>
@@ -948,16 +921,17 @@ const HeroSection = () => {
             <div className="relative h-full">
               {/* Main image */}
               <div className="relative h-full md:w-full overflow-hidden">
-                <img
+                <OptimizedImage
                   key={`modal-image-${currentImageIndex}`}
                   src={content.modal_images[currentImageIndex].attachment}
                   alt={content.modal_images[currentImageIndex].primary_value || "Gallery image"}
                   className={`w-full h-full object-cover ${
                     slideDirection === 'right' ? 'animate-slide-in-right' : 'animate-slide-in-left'
                   }`}
-                  onError={(e) => {
-                    e.target.src = "https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80";
-                  }}
+                  fallbackSrc="https://images.unsplash.com/photo-1553877522-43269d4ea984?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
+                  widths={[768, 1280, 1600]}
+                  sizes="100vw"
+                  loading="eager"
                 />
                 
                 {/* Image caption - using primary_value and secondary_value from child table */}

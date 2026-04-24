@@ -464,6 +464,8 @@
 import React, { useState, useEffect } from 'react';
 import { CheckCircle, ChevronRight } from 'lucide-react';
 import { useTheme } from '../../hooks/useTheme';
+import { useHomePage } from '../../hooks/useHomePage';
+import OptimizedImage from '../ui/OptimizedImage';
 
 const ServicesSection = ({ sectionRef }) => {
   // Use theme hook
@@ -473,13 +475,12 @@ const ServicesSection = ({ sectionRef }) => {
   const [services, setServices] = useState([]);
   const [servicesLoading, setServicesLoading] = useState(true);
   const [servicesError, setServicesError] = useState(null);
-  
-  // State for home page content (badge, title, subtitle)
-  const [homePageContent, setHomePageContent] = useState({
-    service_badge: 'Our Services',
-    service_title: 'Smart Software for Growing Businesses',
-    service_subtitle: 'End-to-end software development, built around your needs.'
-  });
+  const { homePageData } = useHomePage();
+  const homePageContent = {
+    service_badge: homePageData?.service_badge || 'Our Services',
+    service_title: homePageData?.service_title || 'Smart Software for Growing Businesses',
+    service_subtitle: homePageData?.service_subtitle || 'End-to-end software development, built around your needs.'
+  };
 
   // Helper function to split title and color the last word
   const formatTitle = (title) => {
@@ -524,29 +525,6 @@ const ServicesSection = ({ sectionRef }) => {
       </>
     );
   };
-
-  // Fetch home page content (single doctype) using REST API
-  useEffect(() => {
-    const fetchHomePageContent = async () => {
-      try {
-        const response = await fetch('/api/resource/Home Page/Home Page');
-        const data = await response.json();
-        
-        if (data.data) {
-          setHomePageContent({
-            service_badge: data.data.service_badge || 'Our Services',
-            service_title: data.data.service_title || 'Smart Software for Growing Businesses',
-            service_subtitle: data.data.service_subtitle || 'End-to-end software development, built around your needs.'
-          });
-        }
-      } catch (err) {
-        console.error('Error fetching home page content:', err);
-        // Keep default values
-      }
-    };
-
-    fetchHomePageContent();
-  }, []);
 
   // Fetch services from Frappe using REST API
   useEffect(() => {
@@ -778,12 +756,14 @@ const ServicesSection = ({ sectionRef }) => {
               >
                 {/* Image Container */}
                 <div className="relative h-48 overflow-hidden">
-                  <img
+                  <OptimizedImage
                     src={service.image}
                     alt={service.title}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                    fallbackSrc="https://images.unsplash.com/photo-1551434678-e076c223a692?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80"
                     onError={handleImageError}
-                    loading="lazy"
+                    widths={[480, 768, 960]}
+                    sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
                   />
                   
                   {/* Service Badge - Only show if featured */}

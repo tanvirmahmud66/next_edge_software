@@ -16,6 +16,7 @@ import {
   AlertCircle,
 } from "lucide-react";
 import { useTheme } from "../../hooks/useTheme";
+import { useHomePage } from "../../hooks/useHomePage";
 import logo from "../../assets/main_logo.png";
 import full_logo from "../../assets/full_logo.png";
 
@@ -33,7 +34,6 @@ const Navbar = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState(null);
-  const [brochureFile, setBrochureFile] = useState(null);
   const navRef = useRef(null);
   const dropdownTimerRef = useRef(null);
   const modalRef = useRef(null);
@@ -45,32 +45,8 @@ const Navbar = () => {
     error,
     refreshTheme,
   } = useTheme();
-
-  // Fetch brochure file from Home Page doctype on component mount
-  useEffect(() => {
-    fetchBrochureFile();
-  }, []);
-
-  const fetchBrochureFile = async () => {
-    try {
-      const response = await fetch('/api/resource/Home%20Page/Home%20Page', {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        credentials: 'include'
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        if (data.data && data.data.brochure) {
-          setBrochureFile(data.data.brochure);
-        }
-      }
-    } catch (err) {
-      console.error('Error fetching brochure file:', err);
-    }
-  };
+  const { homePageData, refreshHomePage } = useHomePage();
+  const brochureFile = homePageData?.brochure || null;
 
   // Country codes for phone input
   const countryCodes = [
@@ -467,7 +443,7 @@ const Navbar = () => {
         
         // Fetch brochure file from Home Page if not already fetched
         if (!brochureFile) {
-          await fetchBrochureFile();
+          await refreshHomePage();
         }
         
         setTimeout(() => {
@@ -477,7 +453,7 @@ const Navbar = () => {
             window.open(brochureFile, '_blank');
           } else {
             // Fallback: try to fetch again
-            fetchBrochureFile().then(() => {
+            refreshHomePage().then(() => {
               if (brochureFile) {
                 window.open(brochureFile, '_blank');
               } else {

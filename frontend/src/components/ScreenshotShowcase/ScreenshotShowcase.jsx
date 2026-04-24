@@ -10,6 +10,9 @@ import {
   Globe,
   Eye,
 } from "lucide-react";
+import { useHomePage } from "../../hooks/useHomePage";
+import { useProjectShowcase } from "../../hooks/useProjectShowcase";
+import OptimizedImage from "../ui/OptimizedImage";
 
 // Configuration constants
 const CONFIG = {
@@ -231,10 +234,13 @@ const FullWidthModal = ({
         <div
           className={`flex justify-center ${isFullWidth ? "min-h-full" : "min-h-screen"} items-start py-20`}
         >
-          <img
+          <OptimizedImage
             src={image}
             alt={alt}
             className="select-none"
+            widths={[768, 1280, 1920]}
+            sizes="100vw"
+            loading="eager"
             style={{
               width: isFullWidth ? "100%" : "auto",
               height: "auto",
@@ -391,12 +397,13 @@ const AutoScrollImage = ({ src, alt }) => {
         msOverflowStyle: "none",
       }}
     >
-      <img
+      <OptimizedImage
         src={src}
         alt={alt}
         className="w-full h-auto object-cover object-top"
         style={{ display: "block" }}
-        loading="lazy"
+        widths={[480, 768, 1200]}
+        sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
       />
     </div>
   );
@@ -602,103 +609,20 @@ const formatTitle = (title) => {
 
 // ============ MAIN COMPONENT ============
 const ShowcaseGrid = () => {
-  const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [modalImage, setModalImage] = useState(null);
   const [modalAlt, setModalAlt] = useState("");
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(9);
-  const [showcaseContent, setShowcaseContent] = useState({
-    badge: "Our Work",
-    title: "Project Showcase",
-    subtitle: "A curated collection of our finest work",
-  });
   const loadMoreRef = useRef(null);
-
-  // Fetch showcase content from Home Page doctype
-  useEffect(() => {
-    const fetchShowcaseContent = async () => {
-      try {
-        const response = await fetch("/api/resource/Home Page/Home Page");
-
-        if (response.ok) {
-          const data = await response.json();
-          if (data.data) {
-            setShowcaseContent({
-              badge: data.data.showcase_badge || "Our Work",
-              title: data.data.showcase_title || "Project Showcase",
-              subtitle:
-                data.data.showcase_subtitle ||
-                "A curated collection of our finest work",
-            });
-          }
-        }
-      } catch (err) {
-        console.error("Error fetching showcase content:", err);
-      }
-    };
-
-    fetchShowcaseContent();
-  }, []);
-
-  // Fetch data
-  const fetchData = useCallback(async () => {
-    setLoading(true);
-    setError(null);
-
-    try {
-      const listResponse = await fetch(
-        `${CONFIG.API_ENDPOINTS.PROJECT_SCREENSHOT}?fields=["name"]&limit_page_length=1&order_by=creation desc`,
-        {
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-        },
-      );
-
-      if (!listResponse.ok) throw new Error(`Failed to fetch project list`);
-      const listData = await listResponse.json();
-
-      if (!listData.data || !listData.data.length) {
-        setItems([]);
-        setLoading(false);
-        return;
-      }
-
-      const docName = listData.data[0].name;
-      const detailResponse = await fetch(
-        `${CONFIG.API_ENDPOINTS.PROJECT_SCREENSHOT}/${docName}`,
-        {
-          credentials: "include",
-          headers: { "Content-Type": "application/json" },
-        },
-      );
-
-      if (!detailResponse.ok)
-        throw new Error(`Failed to fetch project details`);
-      const detailData = await detailResponse.json();
-
-      const formatted = (detailData.data?.demo_project || [])
-        .map((item, idx) => ({
-          id: item.id || idx,
-          title: item.primary_value?.trim() || null,
-          image: item.attachment ? CONFIG.BASE_URL + item.attachment : null,
-        }))
-        .filter((item) => item.image);
-
-      setItems(formatted);
-    } catch (err) {
-      console.error("Error fetching showcase data:", err);
-      setError("Unable to load projects. Please check your connection.");
-      setItems([]);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+  const { homePageData } = useHomePage();
+  const { items, loading, error } = useProjectShowcase();
+  const showcaseContent = {
+    badge: homePageData?.showcase_badge || "Our Work",
+    title: homePageData?.showcase_title || "Project Showcase",
+    subtitle:
+      homePageData?.showcase_subtitle ||
+      "A curated collection of our finest work",
+  };
 
   // Infinite scroll
   useEffect(() => {

@@ -1,55 +1,38 @@
-// src/hooks/useTheme.js
-import { useState, useEffect } from 'react';
+import { useQuery } from "@tanstack/react-query";
 import { fetchActiveTheme, defaultThemeColors } from '../api/theme_api';
 
 export const useTheme = () => {
-  const [theme, setTheme] = useState({
-    colors: defaultThemeColors,
-    name: 'Default',
-    loading: true,
-    error: null
-  });
-
-  const loadTheme = async () => {
-    try {
-      setTheme(prev => ({ ...prev, loading: true, error: null }));
-      
-      const result = await fetchActiveTheme();
-      
+  const query = useQuery({
+    queryKey: ["active-theme"],
+    queryFn: fetchActiveTheme,
+    select: (result) => {
       if (result.success) {
-        setTheme({
+        return {
           colors: result.data.colors,
           name: result.data.themeName,
-          loading: false,
-          error: null
-        });
-      } else {
-        setTheme({
-          colors: defaultThemeColors,
-          name: 'Default (Fallback)',
-          loading: false,
-          error: result.error
-        });
+          error: null,
+        };
       }
-    } catch (error) {
-      setTheme({
-        colors: defaultThemeColors,
-        name: 'Default (Fallback)',
-        loading: false,
-        error: error.message
-      });
-    }
-  };
 
-  useEffect(() => {
-    loadTheme();
-  }, []);
+      return {
+        colors: result.data?.colors || defaultThemeColors,
+        name: result.data?.themeName || "Default (Fallback)",
+        error: result.error || "Failed to load theme",
+      };
+    },
+  });
+
+  const theme = query.data || {
+    colors: defaultThemeColors,
+    name: "Default",
+    error: null,
+  };
 
   return {
     colors: theme.colors,
     themeName: theme.name,
-    loading: theme.loading,
+    loading: query.isLoading,
     error: theme.error,
-    refreshTheme: loadTheme
+    refreshTheme: query.refetch,
   };
 };
