@@ -490,7 +490,7 @@ const WebApplicationsPage = () => {
             {/* Right Content - Hero Image */}
             {pageData?.hero_image && (
               <div className="relative hidden lg:block">
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <div className="relative rounded-2xl overflow-hidden">
                   <img
                     src={pageData.hero_image}
                     alt="Web Application Development"
@@ -498,9 +498,6 @@ const WebApplicationsPage = () => {
                   />
                   <div
                     className="absolute inset-0"
-                    style={{
-                      background: `linear-gradient(135deg, ${colors.primary}80 0%, transparent 70%)`,
-                    }}
                   ></div>
                 </div>
               </div>
