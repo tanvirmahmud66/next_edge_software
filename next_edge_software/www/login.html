@@ -42,7 +42,7 @@
 <div class="page-card-actions">
 	{% if not disable_user_pass_login %}
 	<button class="btn btn-sm btn-primary btn-block btn-login" type="submit">
-		{{ _("Loginnnn") }}</button>
+		{{ _("Login") }}</button>
 	{% endif %}
 	{% if ldap_settings and ldap_settings.enabled %}
 	<button class="btn btn-sm {{ "btn-primary" if disable_user_pass_login else "btn-default" }} btn-block btn-login btn-ldap-login">
@@ -53,6 +53,459 @@
 
 {% block head_include %}
 {{ include_style('login.bundle.css') }}
+<style>
+	/* Background Image for Outer Container */
+	body {
+		background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?w=1920&q=80');
+		background-size: cover;
+		background-position: center;
+		background-repeat: no-repeat;
+		background-attachment: fixed;
+		min-height: 100vh;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		position: relative;
+	}
+
+	body::before {
+		content: '';
+		position: fixed;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		/* background-image: url('https://images.unsplash.com/photo-1557683316-973673baf926?w=1920&q=80'); */
+		/* background: linear-gradient(135deg, rgba(0, 128, 113, 0.95) 0%, rgba(0, 105, 92, 0.9) 30%, rgba(15, 23, 42, 0.95) 100%); */
+		/* background: linear-gradient(135deg, rgba(0, 128, 113, 0.9) 0%, rgba(0, 90, 80, 0.85) 35%, rgba(49, 46, 129, 0.95) 100%); */
+		background: linear-gradient(135deg, rgba(0, 128, 113, 0.88) 0%, rgba(0, 72, 64, 0.82) 40%, rgba(0, 0, 0, 0.95) 100%);
+
+		z-index: 0;
+	}
+
+	.page-content-wrapper {
+		position: relative;
+		z-index: 1;
+		width: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		padding: 20px;
+	}
+
+	/* Main container with glass effect */
+	.for-login,
+	.for-email-login,
+	.for-signup,
+	.for-forgot,
+	.for-login-with-email-link {
+		width: 100%;
+		max-width: 420px;
+		margin: 0 auto;
+		background: rgba(255, 255, 255, 0);
+		backdrop-filter: blur(20px);
+		-webkit-backdrop-filter: blur(20px);
+		border-radius: 16px;
+		box-shadow: 0 25px 50px rgba(0, 0, 0, 0.25);
+		overflow: hidden;
+		animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+		border: 1px solid rgba(255, 255, 255, 0.2);
+	}
+
+	@keyframes fadeInUp {
+		from {
+			opacity: 0;
+			transform: translateY(24px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	/* Header */
+	.page-card-head {
+		text-align: center;
+		padding: 2.5rem 2rem 1.5rem;
+		background: rgba(255, 255, 255, 0);
+		border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+	}
+
+	.app-logo {
+		width: 64px;
+		height: 64px;
+		margin-bottom: 1.25rem;
+		transition: transform 0.3s ease;
+	}
+
+	.app-logo:hover {
+		transform: scale(1.05);
+	}
+
+	
+
+	.page-card-head h4 {
+		font-size: 1.5rem;
+		font-weight: 700;
+		color: #ffffff;
+		margin: 0;
+		letter-spacing: -0.02em;
+	}
+
+	/* Content */
+	.login-content.page-card {
+		padding: 2rem;
+		border: none;
+		box-shadow: none;
+		background: transparent;
+	}
+
+	.page-card-body {
+		padding: 0;
+	}
+
+	/* Original Form Styles Preserved */
+	.form-group {
+		margin-bottom: 1rem;
+	}
+
+	.form-label {
+		display: block;
+		font-weight: 500;
+		color: #0f172a;
+		margin-bottom: 0.5rem;
+		font-size: 0.875rem;
+	}
+
+	.form-label.sr-only {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		padding: 0;
+		margin: -1px;
+		overflow: hidden;
+		clip: rect(0, 0, 0, 0);
+		white-space: nowrap;
+		border-width: 0;
+	}
+
+	.email-field,
+	.password-field {
+		position: relative;
+	}
+
+	.email-field .field-icon,
+	.password-field .field-icon {
+		position: absolute;
+		left: 12px;
+		top: 50%;
+		transform: translateY(-50%);
+		pointer-events: none;
+		color: #94a3b8;
+		z-index: 1;
+	}
+
+	.form-control {
+		width: 100%;
+		border: 1px solid #e2e8f0;
+		font-size: 0.938rem;
+		background: #ffffff;
+		color: #0f172a;
+		border-radius: 8px;
+		outline: none;
+		line-height: 1.5;
+		height: auto;
+		transition: border-color 0.2s ease, box-shadow 0.2s ease;
+	}
+
+	.form-control:focus {
+		border-color: #2563eb;
+		box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+	}
+
+	.form-control::placeholder {
+		color: #94a3b8;
+	}
+
+	.password-field .form-control {
+		padding-right: 4rem;
+	}
+
+
+	.toggle-password:hover {
+		background: #dbeafe;
+		color: #1d4ed8;
+	}
+
+	.forgot-password-message {
+		text-align: right;
+		margin-top: 0.75rem;
+		margin-bottom: 0.75rem;
+	}
+
+	.forgot-password-message a {
+		font-size: 0.875rem;
+		color: #ffffff !important;
+		text-decoration: none;
+		font-weight: 600;
+		transition: color 0.2s ease;
+	}
+
+	.forgot-password-message a:hover {
+		color: #ffffff;
+		text-decoration: underline;
+	}
+
+	/* Actions */
+	.page-card-actions {
+		margin-top: 0.5rem;
+	}
+
+	.btn {
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		padding: 0.75rem 1.5rem;
+		font-size: 0.938rem;
+		font-weight: 600;
+		border-radius: 8px;
+		transition: all 0.2s ease;
+		border: none;
+		cursor: pointer;
+		width: 100%;
+		text-align: center;
+	}
+
+	.btn-sm {
+		padding: 0.75rem 1.5rem;
+		font-size: 0.938rem;
+	}
+
+	.btn-primary {
+		background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+		color: white;
+		border: none;
+	}
+
+	.btn-primary:hover {
+		transform: translateY(-1px);
+		box-shadow: 0 8px 25px rgba(37, 99, 235, 0.3);
+	}
+
+	.btn-default {
+		background: transparent;
+		color: #2563eb;
+		border: 1px solid #e2e8f0;
+		font-weight: 600;
+	}
+
+	.btn-default:hover {
+		background: #f8fafc;
+		border-color: #2563eb;
+		transform: translateY(-1px);
+		box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+	}
+
+	.btn-ldap-login {
+		margin-top: 0.75rem;
+	}
+
+	/* Social Login */
+	.social-logins {
+		margin-top: 1.5rem;
+		padding-top: 1.5rem;
+		border-top: 1px solid #e2e8f0;
+	}
+
+	.login-divider {
+		text-align: center;
+		position: relative;
+		color: #94a3b8;
+		font-size: 0.813rem;
+		font-weight: 500;
+		margin-bottom: 1.25rem;
+	}
+
+	.login-divider::before,
+	.login-divider::after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		width: calc(50% - 20px);
+		height: 1px;
+		background: #e2e8f0;
+	}
+
+	.login-divider::before {
+		left: 0;
+	}
+
+	.login-divider::after {
+		right: 0;
+	}
+
+	.social-login-buttons {
+		display: flex;
+		flex-direction: column;
+		gap: 0.75rem;
+	}
+
+	.login-button-wrapper {
+		width: 100%;
+	}
+
+	.btn-login-option {
+		background: #ffffff;
+		border: 1px solid #e2e8f0;
+		color: #0f172a;
+		font-weight: 600;
+		font-size: 0.875rem;
+		padding: 0.688rem 1.25rem;
+		display: inline-flex;
+		align-items: center;
+		justify-content: center;
+		gap: 0.5rem;
+		border-radius: 8px;
+		transition: all 0.2s ease;
+		text-decoration: none;
+	}
+
+	.btn-login-option:hover {
+		border-color: #2563eb;
+		background: #f8fafc;
+		transform: translateY(-1px);
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+		text-decoration: none;
+	}
+
+	.btn-login-with-frappe-cloud svg,
+	.btn-login-with-email-link svg {
+		width: 20px;
+		height: 20px;
+	}
+
+	/* Sign Up Message */
+	.sign-up-message {
+		text-align: center;
+		padding: 1.25rem 2rem 1.5rem;
+		color: #475569;
+		font-size: 0.875rem;
+		font-weight: 500;
+		background: rgba(248, 250, 252, 0.5);
+		border-top: 1px solid #e2e8f0;
+	}
+
+	.sign-up-message a {
+		color: #2563eb;
+		font-weight: 700;
+		text-decoration: none;
+		margin-left: 0.25rem;
+		transition: color 0.2s ease;
+	}
+
+	.sign-up-message a:hover {
+		color: #1d4ed8;
+		text-decoration: underline;
+	}
+
+	/* Utility Classes */
+	.text-center {
+		text-align: center;
+	}
+
+	.text-muted {
+		color: #475569;
+	}
+
+	.text-normal {
+		font-size: 0.938rem;
+	}
+
+	.mt-1 {
+		margin-top: 0.25rem;
+	}
+
+	.mt-2 {
+		margin-top: 0.5rem;
+	}
+
+	.mb-2 {
+		margin-bottom: 0.5rem;
+	}
+
+	.mb-8 {
+		margin-bottom: 2rem;
+	}
+
+	.my-5 {
+		margin-top: 3rem;
+		margin-bottom: 3rem;
+	}
+
+	.mr-2 {
+		margin-right: 0.5rem;
+	}
+
+	.hide {
+		display: none !important;
+	}
+
+	.indicator {
+		display: inline-block;
+		padding: 0.5rem 1.25rem;
+		border-radius: 2rem;
+		font-weight: 600;
+		font-size: 0.813rem;
+	}
+
+	.indicator.gray {
+		background: #f1f5f9;
+		color: #475569;
+	}
+
+	/* Loading State */
+	.btn:disabled {
+		opacity: 0.7;
+		cursor: not-allowed;
+		transform: none !important;
+		box-shadow: none !important;
+	}
+
+	/* Responsive */
+	@media (max-width: 480px) {
+		.for-login,
+		.for-email-login,
+		.for-signup,
+		.for-forgot,
+		.for-login-with-email-link {
+			border-radius: 12px;
+			max-width: 100%;
+		}
+
+		.page-card-head {
+			padding: 2rem 1.5rem 1.25rem;
+		}
+
+		.login-content.page-card {
+			padding: 1.5rem;
+		}
+
+		.page-card-head h4 {
+			font-size: 1.25rem;
+		}
+
+		.btn {
+			padding: 0.688rem 1.25rem;
+		}
+	}
+
+	/* Custom Background Option */
+	@media (min-width: 1200px) {
+		.for-login {
+			max-width: 440px;
+		}
+	}
+</style>
 {% endblock %}
 
 {% macro logo_section(title=null) %}
@@ -68,7 +521,7 @@
 
 {% block page_content %}
 <!-- {{ for_test }} -->
-<div>
+<div class="page-content-wrapper">
 	<noscript>
 		<div class="text-center my-5">
 			<h4>{{ _("Javascript is disabled on your browser") }}</h4>
