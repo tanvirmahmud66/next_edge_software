@@ -1,8 +1,10 @@
 
+
 // // ProcessSection.jsx
 // import React, { useState, useEffect } from 'react';
 // import { Rocket, Target, BarChart3, Code, Shield, Heart, CheckCircle, Users, Brain, Cpu, Zap, Globe, Clock } from 'lucide-react';
 // import { useTheme } from '../../hooks/useTheme';
+// import { useHomePage } from '../../hooks/useHomePage';
 
 // const ProcessSection = () => {
 //   // Use theme hook
@@ -12,13 +14,12 @@
 //   const [processSteps, setProcessSteps] = useState([]);
 //   const [processLoading, setProcessLoading] = useState(true);
 //   const [processError, setProcessError] = useState(null);
-  
-//   // State for home page content (badge, title, subtitle)
-//   const [homePageContent, setHomePageContent] = useState({
-//     process_badge: 'Our Process',
-//     process_title: 'From Idea to Impact',
-//     process_subtitle: 'A systematic approach that ensures quality, transparency, and successful delivery.'
-//   });
+//   const { homePageData } = useHomePage();
+//   const homePageContent = {
+//     process_badge: homePageData?.process_badge || 'Our Process',
+//     process_title: homePageData?.process_title || 'From Idea to Impact',
+//     process_subtitle: homePageData?.process_subtitle || 'A systematic approach that ensures quality, transparency, and successful delivery.'
+//   };
 
 //   // Helper function to split title and color the last word
 //   const formatTitle = (title) => {
@@ -80,36 +81,6 @@
 //     'maintenance': <Clock className="w-6 h-6" />,
 //     'default': <Target className="w-6 h-6" />
 //   };
-
-//   // Fetch home page content (single doctype) using REST API
-//   useEffect(() => {
-//     const fetchHomePageContent = async () => {
-//       try {
-//         console.log('Fetching home page content...');
-//         const response = await fetch('/api/resource/Home Page/Home Page');
-        
-//         if (!response.ok) {
-//           throw new Error(`HTTP error! status: ${response.status}`);
-//         }
-        
-//         const data = await response.json();
-//         console.log('Home page data:', data);
-        
-//         if (data.data) {
-//           setHomePageContent({
-//             process_badge: data.data.process_badge || 'Our Process',
-//             process_title: data.data.process_title || 'From Idea to Impact',
-//             process_subtitle: data.data.process_subtitle || 'A systematic approach that ensures quality, transparency, and successful delivery.'
-//           });
-//         }
-//       } catch (err) {
-//         console.error('Error fetching home page content:', err);
-//         // Keep default values
-//       }
-//     };
-
-//     fetchHomePageContent();
-//   }, []);
 
 //   // Fetch process steps from Development Process doctype
 //   useEffect(() => {
@@ -317,30 +288,30 @@
 //       </div>
 
 //       {/* Decorative elements */}
-//       <div className="absolute top-0 left-0 w-96 h-96 rounded-full mix-blend-overlay filter blur-3xl animate-pulse"
+//       <div className="absolute top-0 left-0 w-96 h-96 rounded-full mix-blend-overlay filter blur-3xl animate-float"
 //         style={{ background: themeColors?.accent2 || '#008170', opacity: 0.2 }}
 //       ></div>
-//       <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full mix-blend-overlay filter blur-3xl animate-pulse animation-delay-2000"
+//       <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full mix-blend-overlay filter blur-3xl animate-float animation-delay-2000"
 //         style={{ background: themeColors?.accent1 || '#005B41', opacity: 0.2 }}
 //       ></div>
-//       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full mix-blend-overlay filter blur-3xl animate-pulse animation-delay-4000"
+//       <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full mix-blend-overlay filter blur-3xl animate-float animation-delay-4000"
 //         style={{ background: themeColors?.primary || '#0F0F0F', opacity: 0.1 }}
 //       ></div>
 
 //       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 //         {/* Section Header - Dynamic from Home Page with Formatted Title */}
 //         <div className="text-center max-w-3xl mx-auto mb-16">
-//           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-4 border border-white/20">
+//           <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-4 border border-white/20 opacity-0 animate-fade-in-up">
 //             <Rocket className="w-4 h-4" style={{ color: themeColors?.accent2 || '#008170' }} />
 //             <span className="text-white">{homePageContent.process_badge}</span>
 //           </div>
           
 //           {/* Formatted Title with Last Word Highlight */}
-//           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+//           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 opacity-0 animate-fade-in-up stagger-1">
 //             {formatTitle(homePageContent.process_title)}
 //           </h2>
           
-//           <p className="text-white/80 text-lg">
+//           <p className="text-white/80 text-lg opacity-0 animate-fade-in-up stagger-2">
 //             {homePageContent.process_subtitle}
 //           </p>
 //         </div>
@@ -351,8 +322,9 @@
 //             {processSteps.map((step, index) => (
 //               <div
 //                 key={index}
-//                 className="group relative backdrop-blur-sm rounded-xl p-6 transition-all duration-300 hover:shadow-2xl hover:-translate-y-2 border"
+//                 className="group relative backdrop-blur-sm rounded-xl p-6 transition-all duration-500 hover:shadow-2xl hover:-translate-y-2 border opacity-0 animate-fade-in-scale"
 //                 style={{ 
+//                   animationDelay: `${0.15 + index * 0.12}s`,
 //                   background: `linear-gradient(135deg, ${themeColors?.primary || '#0F0F0F'}80, ${themeColors?.secondary || '#232D3F'}80)`,
 //                   borderColor: `${step.accent}40`,
 //                   boxShadow: `0 8px 32px ${themeColors?.primary || '#0F0F0F'}40`
@@ -360,7 +332,7 @@
 //               >
 //                 {/* Step Number Badge */}
 //                 <div 
-//                   className="absolute -top-3 -right-3 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg transition-transform group-hover:scale-110"
+//                   className="absolute -top-3 -right-3 w-12 h-12 rounded-full flex items-center justify-center text-white font-bold text-lg shadow-lg transition-all duration-300 group-hover:scale-110 group-hover:rotate-12"
 //                   style={{ 
 //                     background: `linear-gradient(135deg, ${step.accent}, ${step.accent}CC)`,
 //                     boxShadow: `0 4px 12px ${step.accent}80`
@@ -371,22 +343,31 @@
                 
 //                 {/* Icon Container */}
 //                 <div 
-//                   className="w-12 h-12 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300"
+//                   className="w-12 h-12 rounded-lg flex items-center justify-center mb-4 transition-all duration-300 group-hover:scale-110 group-hover:rotate-6 relative overflow-hidden"
 //                   style={{ 
 //                     background: `${step.accent}20`,
 //                     color: step.accent 
 //                   }}
 //                 >
-//                   {step.icon}
+//                   {/* Icon glow effect */}
+//                   <div 
+//                     className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+//                     style={{ 
+//                       boxShadow: `0 0 15px ${step.accent}40`
+//                     }}
+//                   ></div>
+//                   <div className="relative z-10 transition-transform duration-300 group-hover:scale-110">
+//                     {step.icon}
+//                   </div>
 //                 </div>
                 
 //                 {/* Title */}
-//                 <h3 className="text-xl font-bold text-white mb-2 group-hover:text-white transition-colors">
+//                 <h3 className="text-xl font-bold text-white mb-2 transition-all duration-300 group-hover:text-white group-hover:translate-x-1">
 //                   {step.title}
 //                 </h3>
                 
 //                 {/* Description */}
-//                 <p className="text-white/70 text-sm mb-4">
+//                 <p className="text-white/70 text-sm mb-4 transition-colors duration-300 group-hover:text-white/90">
 //                   {step.description}
 //                 </p>
                 
@@ -394,9 +375,13 @@
 //                 {step.details.length > 0 ? (
 //                   <ul className="space-y-2">
 //                     {step.details.map((detail, idx) => (
-//                       <li key={idx} className="flex items-center gap-2 text-xs text-white/80">
+//                       <li 
+//                         key={idx} 
+//                         className="flex items-center gap-2 text-xs text-white/80 transition-all duration-300 hover:translate-x-1"
+//                         style={{ transitionDelay: `${idx * 50}ms` }}
+//                       >
 //                         <CheckCircle 
-//                           className="w-3 h-3 flex-shrink-0" 
+//                           className="w-3 h-3 flex-shrink-0 transition-all duration-300 group-hover:scale-110 group-hover:rotate-12" 
 //                           style={{ color: step.accent }}
 //                         />
 //                         <span>{detail}</span>
@@ -414,7 +399,7 @@
 
 //                 {/* Bottom Accent Line */}
 //                 <div 
-//                   className="absolute bottom-0 left-0 right-0 h-1 rounded-b-xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"
+//                   className="absolute bottom-0 left-0 right-0 h-1 rounded-b-xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out"
 //                   style={{ 
 //                     background: `linear-gradient(90deg, ${step.accent}, ${step.accent}CC, transparent)`
 //                   }}
@@ -422,7 +407,7 @@
 
 //                 {/* Hover Glow Effect */}
 //                 <div 
-//                   className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-300 pointer-events-none"
+//                   className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-10 transition-opacity duration-500 ease-out pointer-events-none"
 //                   style={{ 
 //                     background: step.accent,
 //                     filter: 'blur(20px)'
@@ -433,17 +418,17 @@
 //           </div>
 //         ) : (
 //           // Show message if no process steps are found
-//           <div className="text-center py-12">
+//           <div className="text-center py-12 opacity-0 animate-fade-in-up stagger-3">
 //             <p className="text-white/60 text-lg">No process steps available at the moment.</p>
 //           </div>
 //         )}
 
 //         {/* Process Flow Indicator - Only show if there are steps */}
 //         {processSteps.length > 0 && (
-//           <div className="flex flex-col items-center mt-12">
+//           <div className="flex flex-col items-center mt-12 opacity-0 animate-fade-in-up stagger-4">
 //             <div className="flex items-center gap-2 text-sm text-white/60 mb-2">
 //               <span>Start</span>
-//               <div className="w-20 h-0.5 bg-gradient-to-r" 
+//               <div className="w-20 h-0.5 bg-gradient-to-r transition-all duration-300 hover:w-24" 
 //                    style={{ 
 //                      background: `linear-gradient(90deg, ${themeColors?.accent2 || '#008170'}, ${themeColors?.accent1 || '#005B41'})`
 //                    }}>
@@ -456,7 +441,7 @@
 //               {processSteps.map((_, index) => (
 //                 <div 
 //                   key={index}
-//                   className="w-2 h-2 rounded-full transition-all duration-300"
+//                   className="w-2 h-2 rounded-full transition-all duration-300 hover:scale-150 hover:opacity-100"
 //                   style={{ 
 //                     backgroundColor: index < Math.floor(processSteps.length / 2) ? (themeColors?.accent2 || '#008170') : (themeColors?.accent1 || '#005B41'),
 //                     opacity: 0.5 + (index * 0.1)
@@ -469,12 +454,13 @@
 //       </div>
 
 //       <style jsx>{`
-//         @keyframes pulse {
-//           0%, 100% { opacity: 0.2; }
-//           50% { opacity: 0.3; }
+//         @keyframes float {
+//           0%, 100% { transform: translate(0px, 0px) scale(1); opacity: 0.2; }
+//           33% { transform: translate(30px, -30px) scale(1.1); opacity: 0.3; }
+//           66% { transform: translate(-20px, 20px) scale(0.9); opacity: 0.15; }
 //         }
-//         .animate-pulse {
-//           animation: pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+//         .animate-float {
+//           animation: float 7s infinite;
 //         }
 //         .animation-delay-2000 {
 //           animation-delay: 2s;
@@ -482,23 +468,58 @@
 //         .animation-delay-4000 {
 //           animation-delay: 4s;
 //         }
+
+//         @keyframes fadeInUp {
+//           from {
+//             opacity: 0;
+//             transform: translateY(30px);
+//           }
+//           to {
+//             opacity: 1;
+//             transform: translateY(0);
+//           }
+//         }
+
+//         @keyframes fadeInScale {
+//           from {
+//             opacity: 0;
+//             transform: scale(0.9) translateY(20px);
+//           }
+//           to {
+//             opacity: 1;
+//             transform: scale(1) translateY(0);
+//           }
+//         }
+
+//         .animate-fade-in-up {
+//           animation: fadeInUp 0.8s ease-out forwards;
+//         }
+
+//         .animate-fade-in-scale {
+//           animation: fadeInScale 0.6s ease-out forwards;
+//         }
+
+//         .stagger-1 {
+//           animation-delay: 0.1s;
+//         }
+
+//         .stagger-2 {
+//           animation-delay: 0.3s;
+//         }
+
+//         .stagger-3 {
+//           animation-delay: 0.5s;
+//         }
+
+//         .stagger-4 {
+//           animation-delay: 0.7s;
+//         }
 //       `}</style>
 //     </section>
 //   );
 // };
 
 // export default ProcessSection;
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -768,10 +789,78 @@ const ProcessSection = () => {
   return (
     <section 
       className="py-20 lg:py-28 relative overflow-hidden"
-      style={{ 
-        background: `linear-gradient(135deg, ${themeColors?.primary || '#0F0F0F'} 0%, ${themeColors?.secondary || '#232D3F'} 50%, ${themeColors?.accent1 || '#005B41'} 100%)`
-      }}
     >
+      {/* ====== PREMIUM MODERN BACKGROUND (SAME AS SHOWCASE GRID) ====== */}
+      <div className="absolute inset-0 bg-[#030712]">
+        {/* Layer 1: Noise Texture Overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+            backgroundRepeat: "repeat",
+            backgroundSize: "200px 200px",
+          }}
+        />
+        {/* Layer 2: Main Grid Lines (80px) */}
+        <div className="absolute inset-0">
+          <div
+            className="absolute inset-0 animate-grid-primary"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px)",
+              backgroundSize: "100px 100px",
+            }}
+          />
+        </div>
+        {/* Layer 3: Fine Grid (20px) */}
+        <div className="absolute inset-0">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)",
+              backgroundSize: "25px 25px",
+            }}
+          />
+        </div>
+        <div
+          className="absolute animate-orb-2"
+          style={{
+            bottom: "-15%",
+            left: "-5%",
+            width: "700px",
+            height: "700px",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 25%, rgba(139, 92, 246, 0.01) 50%, transparent 70%)",
+            filter: "blur(100px)",
+          }}
+        />
+        <div
+          className="absolute animate-orb-3"
+          style={{
+            top: "40%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "500px",
+            height: "500px",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(99, 102, 241, 0.02) 30%, transparent 70%)",
+            filter: "blur(120px)",
+          }}
+        />
+        {/* Edge Vignette */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, transparent 50%, rgba(3, 7, 18, 0.6) 100%)",
+          }}
+        />
+      </div>
+      {/* ====== END BACKGROUND ====== */}
+
       {/* Error message with retry button */}
       {(themeError || processError) && (
         <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-red-500/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm z-30 flex items-center gap-3">
@@ -784,28 +873,6 @@ const ProcessSection = () => {
           </button>
         </div>
       )}
-
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div 
-          className="absolute top-0 left-0 w-full h-full"
-          style={{
-            backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-            backgroundSize: '40px 40px'
-          }}
-        />
-      </div>
-
-      {/* Decorative elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 rounded-full mix-blend-overlay filter blur-3xl animate-float"
-        style={{ background: themeColors?.accent2 || '#008170', opacity: 0.2 }}
-      ></div>
-      <div className="absolute bottom-0 right-0 w-96 h-96 rounded-full mix-blend-overlay filter blur-3xl animate-float animation-delay-2000"
-        style={{ background: themeColors?.accent1 || '#005B41', opacity: 0.2 }}
-      ></div>
-      <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 rounded-full mix-blend-overlay filter blur-3xl animate-float animation-delay-4000"
-        style={{ background: themeColors?.primary || '#0F0F0F', opacity: 0.1 }}
-      ></div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header - Dynamic from Home Page with Formatted Title */}
@@ -963,21 +1030,35 @@ const ProcessSection = () => {
       </div>
 
       <style jsx>{`
-        @keyframes float {
-          0%, 100% { transform: translate(0px, 0px) scale(1); opacity: 0.2; }
-          33% { transform: translate(30px, -30px) scale(1.1); opacity: 0.3; }
-          66% { transform: translate(-20px, 20px) scale(0.9); opacity: 0.15; }
+        @keyframes gridPrimaryFade {
+          0%, 100% { opacity: 0.15; }
+          50% { opacity: 0.3; }
         }
-        .animate-float {
-          animation: float 7s infinite;
+        
+        @keyframes dotsFade {
+          0%, 100% { opacity: 0.02; }
+          50% { opacity: 0.04; }
         }
-        .animation-delay-2000 {
-          animation-delay: 2s;
+        
+        @keyframes floatOrb1 {
+          0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+          25% { transform: translate(50px, -30px) scale(1.1); opacity: 0.9; }
+          50% { transform: translate(-20px, -60px) scale(0.95); opacity: 0.6; }
+          75% { transform: translate(-40px, -10px) scale(1.05); opacity: 0.8; }
         }
-        .animation-delay-4000 {
-          animation-delay: 4s;
+        
+        @keyframes floatOrb2 {
+          0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+          25% { transform: translate(-40px, 30px) scale(1.08); opacity: 0.85; }
+          50% { transform: translate(20px, 50px) scale(0.92); opacity: 0.6; }
+          75% { transform: translate(30px, -20px) scale(1.06); opacity: 0.8; }
         }
 
+        @keyframes floatOrb3 {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+          50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.9; }
+        }
+        
         @keyframes fadeInUp {
           from {
             opacity: 0;
@@ -998,6 +1079,26 @@ const ProcessSection = () => {
             opacity: 1;
             transform: scale(1) translateY(0);
           }
+        }
+
+        .animate-grid-primary {
+          animation: gridPrimaryFade 5s ease-in-out infinite;
+        }
+
+        .animate-dots {
+          animation: dotsFade 6s ease-in-out infinite;
+        }
+
+        .animate-orb-1 {
+          animation: floatOrb1 15s ease-in-out infinite;
+        }
+
+        .animate-orb-2 {
+          animation: floatOrb2 18s ease-in-out infinite;
+        }
+
+        .animate-orb-3 {
+          animation: floatOrb3 12s ease-in-out infinite;
         }
 
         .animate-fade-in-up {
@@ -1029,13 +1130,3 @@ const ProcessSection = () => {
 };
 
 export default ProcessSection;
-
-
-
-
-
-
-
-
-
-

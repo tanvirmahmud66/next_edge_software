@@ -1,8 +1,11 @@
 
+
 // // IndustriesSection.jsx
-// import React, { useState, useEffect } from 'react';
+// import React from 'react';
 // import { Building2, Heart, TrendingUp, Cpu, BookOpen, Code } from 'lucide-react';
 // import { useTheme } from '../../hooks/useTheme';
+// import { useHomePage } from '../../hooks/useHomePage';
+// import OptimizedImage from '../ui/OptimizedImage';
 
 // // Icon mapping for different industry types
 // const iconMap = {
@@ -19,42 +22,7 @@
 // const IndustriesSection = () => {
 //   // Use theme hook
 //   const { colors: themeColors, loading: themeLoading, error: themeError, refreshTheme } = useTheme();
-  
-//   const [homePageData, setHomePageData] = useState(null);
-//   const [loading, setLoading] = useState(true);
-//   const [error, setError] = useState(null);
-
-//   useEffect(() => {
-//     fetchHomePageData();
-//   }, []);
-
-//   const fetchHomePageData = async () => {
-//     try {
-//       setLoading(true);
-//       const response = await fetch('/api/resource/Home%20Page/Home%20Page', {
-//         method: 'GET',
-//         headers: {
-//           'Content-Type': 'application/json',
-//         }
-//       });
-      
-//       if (!response.ok) {
-//         throw new Error(`HTTP error! status: ${response.status}`);
-//       }
-      
-//       const data = await response.json();
-      
-//       if (data.data) {
-//         setHomePageData(data.data);
-//         setError(null);
-//       }
-//     } catch (err) {
-//       console.error('Error fetching home page data:', err);
-//       setError('Failed to load industries content');
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
+//   const { homePageData, loading, error, refreshHomePage } = useHomePage();
 
 //   // Helper function to split title and color the last word
 //   const formatTitle = (title) => {
@@ -146,7 +114,7 @@
 //           <button 
 //             onClick={() => {
 //               refreshTheme();
-//               fetchHomePageData();
+//               refreshHomePage();
 //             }}
 //             className="bg-white/20 hover:bg-white/30 px-2 py-1 rounded text-xs transition-colors"
 //           >
@@ -170,7 +138,7 @@
 //         {/* Section Header */}
 //         <div className="text-center max-w-3xl mx-auto mb-16">
 //           <div 
-//             className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-4"
+//             className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium mb-4 opacity-0 animate-fade-in-up"
 //             style={{ 
 //               backgroundColor: themeColors.primary, 
 //               color: 'white',
@@ -180,10 +148,10 @@
 //             <Building2 className="w-4 h-4" style={{ color: themeColors.accent2 }} />
 //             <span>{content.industries_badge}</span>
 //           </div>
-//           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+//           <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4 opacity-0 animate-fade-in-up stagger-1">
 //             {formatTitle(content.industries_title)}
 //           </h2>
-//           <p className="text-white/70 text-lg">
+//           <p className="text-white/70 text-lg opacity-0 animate-fade-in-up stagger-2">
 //             {content.industries_subtitle}
 //           </p>
 //         </div>
@@ -193,7 +161,8 @@
 //           {industries.map((industry, index) => (
 //             <div
 //               key={index}
-//               className="group text-center p-4 rounded-lg transition-all duration-300 hover:bg-white/10 hover:scale-105 transform"
+//               className="group text-center p-4 rounded-lg transition-all duration-300 hover:bg-white/10 hover:scale-105 transform opacity-0 animate-fade-in-scale"
+//               style={{ animationDelay: `${0.1 + index * 0.1}s` }}
 //             >
 //               <div 
 //                 className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-3 transition-all duration-300 group-hover:scale-110 relative overflow-hidden"
@@ -202,25 +171,37 @@
 //                   color: index % 2 === 0 ? themeColors.accent2 : themeColors.accent1
 //                 }}
 //               >
+//                 {/* Glow effect on hover */}
+//                 <div 
+//                   className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+//                   style={{ 
+//                     boxShadow: `0 0 20px ${index % 2 === 0 ? themeColors.accent2 : themeColors.accent1}40`
+//                   }}
+//                 ></div>
+                
 //                 {/* If there's an attachment/icon image, use it, otherwise use the mapped icon */}
 //                 {industry.attachment ? (
-//                   <img 
+//                   <OptimizedImage
 //                     src={industry.attachment} 
 //                     alt={industry.primary_value}
-//                     className="w-8 h-8 object-contain"
+//                     className="w-8 h-8 object-contain relative z-10 transition-transform duration-300 group-hover:scale-110"
+//                     widths={[64, 96, 128]}
+//                     sizes="32px"
 //                     onError={(e) => {
 //                       e.target.style.display = 'none';
 //                       e.target.parentElement.innerHTML = getIndustryIcon(industry.primary_value).props.children;
 //                     }}
 //                   />
 //                 ) : (
-//                   getIndustryIcon(industry.primary_value)
+//                   <div className="relative z-10 transition-transform duration-300 group-hover:scale-110">
+//                     {getIndustryIcon(industry.primary_value)}
+//                   </div>
 //                 )}
 //               </div>
-//               <h3 className="text-white font-semibold mb-1 group-hover:text-white transition-colors">
+//               <h3 className="text-white font-semibold mb-1 group-hover:text-white transition-colors duration-300">
 //                 {industry.primary_value}
 //               </h3>
-//               <p className="text-xs text-white/60 group-hover:text-white/80 transition-colors">
+//               <p className="text-xs text-white/60 group-hover:text-white/80 transition-colors duration-300">
 //                 {industry.secondary_value}
 //               </p>
 //             </div>
@@ -228,7 +209,7 @@
 //         </div>
 
 //         {/* Decorative Bottom Line */}
-//         <div className="mt-16 text-center">
+//         <div className="mt-16 text-center opacity-0 animate-fade-in-up stagger-3">
 //           <div 
 //             className="inline-block w-24 h-1 rounded-full"
 //             style={{ 
@@ -237,11 +218,77 @@
 //           ></div>
 //         </div>
 //       </div>
+
+//       <style jsx>{`
+//         @keyframes fadeInUp {
+//           from {
+//             opacity: 0;
+//             transform: translateY(30px);
+//           }
+//           to {
+//             opacity: 1;
+//             transform: translateY(0);
+//           }
+//         }
+
+//         @keyframes fadeInScale {
+//           from {
+//             opacity: 0;
+//             transform: scale(0.8) translateY(20px);
+//           }
+//           to {
+//             opacity: 1;
+//             transform: scale(1) translateY(0);
+//           }
+//         }
+
+//         .animate-fade-in-up {
+//           animation: fadeInUp 0.8s ease-out forwards;
+//         }
+
+//         .animate-fade-in-scale {
+//           animation: fadeInScale 0.6s ease-out forwards;
+//         }
+
+//         .stagger-1 {
+//           animation-delay: 0.1s;
+//         }
+
+//         .stagger-2 {
+//           animation-delay: 0.3s;
+//         }
+
+//         .stagger-3 {
+//           animation-delay: 0.5s;
+//         }
+//       `}</style>
 //     </section>
 //   );
 // };
 
 // export default IndustriesSection;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -278,32 +325,24 @@ const iconMap = {
   'Manufacturing': <Cpu className="w-8 h-8" />,
   'Education': <BookOpen className="w-8 h-8" />,
   'Technology': <Code className="w-8 h-8" />,
-  // Default icon if no match
   'default': <Building2 className="w-8 h-8" />
 };
 
 const IndustriesSection = () => {
-  // Use theme hook
   const { colors: themeColors, loading: themeLoading, error: themeError, refreshTheme } = useTheme();
   const { homePageData, loading, error, refreshHomePage } = useHomePage();
 
-  // Helper function to split title and color the last word
   const formatTitle = (title) => {
     if (!title) return null;
     
     const words = title.trim().split(' ');
     if (words.length === 1) {
       return (
-        <span
-          className="relative inline-block group"
-          style={{ color: themeColors.accent2 }}
-        >
+        <span className="relative inline-block group" style={{ color: themeColors.accent2 }}>
           {words[0]}
           <span
             className="absolute -bottom-2 left-0 w-0 group-hover:w-full h-1 transition-all duration-300"
-            style={{
-              background: `linear-gradient(90deg, ${themeColors.accent2}, ${themeColors.accent1})`,
-            }}
+            style={{ background: `linear-gradient(90deg, ${themeColors.accent2}, ${themeColors.accent1})` }}
           ></span>
         </span>
       );
@@ -315,23 +354,17 @@ const IndustriesSection = () => {
     return (
       <>
         {firstPart}{' '}
-        <span
-          className="relative inline-block group"
-          style={{ color: themeColors.accent2 }}
-        >
+        <span className="relative inline-block group" style={{ color: themeColors.accent2 }}>
           {lastWord}
           <span
             className="absolute -bottom-2 left-0 w-0 group-hover:w-full h-1 transition-all duration-300"
-            style={{
-              background: `linear-gradient(90deg, ${themeColors.accent2}, ${themeColors.accent1})`,
-            }}
+            style={{ background: `linear-gradient(90deg, ${themeColors.accent2}, ${themeColors.accent1})` }}
           ></span>
         </span>
       </>
     );
   };
 
-  // Default content in case data is not available
   const defaultContent = {
     industries_badge: "Industries We Serve",
     industries_title: "Expertise Across Diverse Sectors",
@@ -349,16 +382,13 @@ const IndustriesSection = () => {
   const content = homePageData || defaultContent;
   const industries = content.items || defaultContent.items;
 
-  // Function to get appropriate icon based on industry name
   const getIndustryIcon = (industryName) => {
-    const icon = iconMap[industryName] || iconMap['default'];
-    return icon;
+    return iconMap[industryName] || iconMap['default'];
   };
 
-  // Show loading state
   if (loading || themeLoading) {
     return (
-      <section className="py-20 lg:py-28 bg-gray-900">
+      <section className="py-20 lg:py-28 relative overflow-hidden bg-[#030712]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center items-center min-h-[300px]">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
@@ -369,33 +399,87 @@ const IndustriesSection = () => {
   }
 
   return (
-    <section className="py-20 lg:py-28 relative" style={{ backgroundColor: themeColors.secondary }}>
-      {/* Error message with retry button */}
+    <section className="py-20 lg:py-28 relative overflow-hidden">
+      {/* ====== PREMIUM MODERN BACKGROUND ====== */}
+      <div className="absolute inset-0 bg-[#030712]">
+        {/* Layer 1: Noise Texture Overlay */}
+        <div
+          className="absolute inset-0 opacity-[0.02]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E")`,
+            backgroundRepeat: "repeat",
+            backgroundSize: "200px 200px",
+          }}
+        />
+        {/* Layer 2: Main Grid Lines (80px) */}
+        <div className="absolute inset-0">
+          <div
+            className="absolute inset-0 animate-grid-primary"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255, 255, 255, 0.2) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.2) 1px, transparent 1px)",
+              backgroundSize: "100px 100px",
+            }}
+          />
+        </div>
+        {/* Layer 3: Fine Grid (20px) */}
+        <div className="absolute inset-0">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)",
+              backgroundSize: "25px 25px",
+            }}
+          />
+        </div>
+        <div
+          className="absolute animate-orb-2"
+          style={{
+            bottom: "-15%",
+            left: "-5%",
+            width: "700px",
+            height: "700px",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, rgba(139, 92, 246, 0.15) 0%, rgba(139, 92, 246, 0.05) 25%, rgba(139, 92, 246, 0.01) 50%, transparent 70%)",
+            filter: "blur(100px)",
+          }}
+        />
+        <div
+          className="absolute animate-orb-3"
+          style={{
+            top: "40%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: "500px",
+            height: "500px",
+            borderRadius: "50%",
+            background:
+              "radial-gradient(circle, rgba(99, 102, 241, 0.08) 0%, rgba(99, 102, 241, 0.02) 30%, transparent 70%)",
+            filter: "blur(120px)",
+          }}
+        />
+        {/* Edge Vignette */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at center, transparent 50%, rgba(3, 7, 18, 0.6) 100%)",
+          }}
+        />
+      </div>
+      {/* ====== END BACKGROUND ====== */}
+
+      {/* Error message */}
       {(themeError || error) && (
         <div className="absolute top-4 left-1/2 transform -translate-x-1/2 bg-red-500/20 backdrop-blur-sm text-white px-4 py-2 rounded-lg text-sm z-30 flex items-center gap-3">
           <span>Failed to load: {themeError || error}</span>
-          <button 
-            onClick={() => {
-              refreshTheme();
-              refreshHomePage();
-            }}
-            className="bg-white/20 hover:bg-white/30 px-2 py-1 rounded text-xs transition-colors"
-          >
+          <button onClick={() => { refreshTheme(); refreshHomePage(); }} className="bg-white/20 hover:bg-white/30 px-2 py-1 rounded text-xs transition-colors">
             Retry
           </button>
         </div>
       )}
-
-      {/* Animated Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div 
-          className="absolute top-0 left-0 w-full h-full"
-          style={{
-            backgroundImage: `radial-gradient(circle at 1px 1px, ${themeColors.accent1} 1px, transparent 0)`,
-            backgroundSize: '40px 40px'
-          }}
-        />
-      </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
@@ -419,7 +503,7 @@ const IndustriesSection = () => {
           </p>
         </div>
 
-        {/* Industries Grid */}
+        {/* Industries Grid - CONTENT UNCHANGED */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
           {industries.map((industry, index) => (
             <div
@@ -434,15 +518,11 @@ const IndustriesSection = () => {
                   color: index % 2 === 0 ? themeColors.accent2 : themeColors.accent1
                 }}
               >
-                {/* Glow effect on hover */}
                 <div 
                   className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{ 
-                    boxShadow: `0 0 20px ${index % 2 === 0 ? themeColors.accent2 : themeColors.accent1}40`
-                  }}
+                  style={{ boxShadow: `0 0 20px ${index % 2 === 0 ? themeColors.accent2 : themeColors.accent1}40` }}
                 ></div>
                 
-                {/* If there's an attachment/icon image, use it, otherwise use the mapped icon */}
                 {industry.attachment ? (
                   <OptimizedImage
                     src={industry.attachment} 
@@ -475,34 +555,69 @@ const IndustriesSection = () => {
         <div className="mt-16 text-center opacity-0 animate-fade-in-up stagger-3">
           <div 
             className="inline-block w-24 h-1 rounded-full"
-            style={{ 
-              background: `linear-gradient(90deg, transparent, ${themeColors.accent2}, ${themeColors.accent1}, transparent)`
-            }}
+            style={{ background: `linear-gradient(90deg, transparent, ${themeColors.accent2}, ${themeColors.accent1}, transparent)` }}
           ></div>
         </div>
       </div>
 
       <style jsx>{`
+        @keyframes gridPrimaryFade {
+          0%, 100% { opacity: 0.5; }
+          50% { opacity: 0.8; }
+        }
+        
+        @keyframes dotsFade {
+          0%, 100% { opacity: 0.04; }
+          50% { opacity: 0.08; }
+        }
+        
+        @keyframes floatOrb1 {
+          0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+          25% { transform: translate(50px, -30px) scale(1.1); opacity: 0.9; }
+          50% { transform: translate(-20px, -60px) scale(0.95); opacity: 0.6; }
+          75% { transform: translate(-40px, -10px) scale(1.05); opacity: 0.8; }
+        }
+        
+        @keyframes floatOrb2 {
+          0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+          25% { transform: translate(-40px, 30px) scale(1.08); opacity: 0.85; }
+          50% { transform: translate(20px, 50px) scale(0.92); opacity: 0.6; }
+          75% { transform: translate(30px, -20px) scale(1.06); opacity: 0.8; }
+        }
+
+        @keyframes floatOrb3 {
+          0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+          50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.9; }
+        }
+
         @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
+          from { opacity: 0; transform: translateY(30px); }
+          to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInScale {
-          from {
-            opacity: 0;
-            transform: scale(0.8) translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1) translateY(0);
-          }
+          from { opacity: 0; transform: scale(0.8) translateY(20px); }
+          to { opacity: 1; transform: scale(1) translateY(0); }
+        }
+
+        .animate-grid-primary {
+          animation: gridPrimaryFade 5s ease-in-out infinite;
+        }
+
+        .animate-dots {
+          animation: dotsFade 6s ease-in-out infinite;
+        }
+
+        .animate-orb-1 {
+          animation: floatOrb1 15s ease-in-out infinite;
+        }
+
+        .animate-orb-2 {
+          animation: floatOrb2 18s ease-in-out infinite;
+        }
+
+        .animate-orb-3 {
+          animation: floatOrb3 12s ease-in-out infinite;
         }
 
         .animate-fade-in-up {
@@ -513,33 +628,12 @@ const IndustriesSection = () => {
           animation: fadeInScale 0.6s ease-out forwards;
         }
 
-        .stagger-1 {
-          animation-delay: 0.1s;
-        }
-
-        .stagger-2 {
-          animation-delay: 0.3s;
-        }
-
-        .stagger-3 {
-          animation-delay: 0.5s;
-        }
+        .stagger-1 { animation-delay: 0.1s; }
+        .stagger-2 { animation-delay: 0.3s; }
+        .stagger-3 { animation-delay: 0.5s; }
       `}</style>
     </section>
   );
 };
 
 export default IndustriesSection;
-
-
-
-
-
-
-
-
-
-
-
-
-

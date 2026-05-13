@@ -7,10 +7,6 @@ import Footer from "./components/Footer/Footer";
 import WebApplicationsPage from "./pages/WebApplicationsPage";
 import ContactPage from "./pages/ContactPage";
 import AboutPage from "./pages/AboutPage";
-import EcommerceSolutionsPage from "./pages/EcommerceSolutionsPage";
-import RealEstateAccountingPage from "./pages/RealEstateAccountingPage";
-import VisaTravelManagementPage from "./pages/VisaTravelManagementPage";
-import ClinicDiagnosticCenter from "./pages/ClinicDiagnosticCenter";
 
 function App() {
   const getSiteName = () => {
@@ -37,10 +33,6 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/web-applications" element={<WebApplicationsPage />} />
-          <Route path="/ecommerce-solutions" element={<EcommerceSolutionsPage />} />
-          <Route path="/real-estate-accounting" element={<RealEstateAccountingPage />} />
-          <Route path="/visa-travel-management" element={<VisaTravelManagementPage/>} />
-          <Route path="/clinic-management" element={<ClinicDiagnosticCenter/>}/>
           <Route path="/contact-us" element={<ContactPage />} />
           <Route path="/about-us" element={<AboutPage />} />
         </Routes>
