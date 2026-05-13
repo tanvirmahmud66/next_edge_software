@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 import WebApplicationsPage from "./pages/WebApplicationsPage";
 import ContactPage from "./pages/ContactPage";
 import AboutPage from "./pages/AboutPage";
+import CursorFollower from "./components/CursorFollower/CursorFollower";
 
 function App() {
   const getSiteName = () => {
@@ -26,6 +27,9 @@ function App() {
         socketPort={import.meta.env.VITE_SOCKET_PORT}
         siteName={getSiteName()}
       >
+
+        <CursorFollower />
+
         {/* Navbar */}
         <Navbar />
 
