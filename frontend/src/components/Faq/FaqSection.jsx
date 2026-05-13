@@ -513,7 +513,7 @@ const FaqSection = () => {
   }
 
   return (
-    <section className="py-20 lg:py-28 relative overflow-hidden">
+    <section className="py-20 lg:py-16 relative overflow-hidden">
       {/* ====== PREMIUM MODERN BACKGROUND (SAME AS SHOWCASE GRID) ====== */}
       <div className="absolute inset-0 bg-[#030712]">
         {/* Layer 1: Noise Texture Overlay */}

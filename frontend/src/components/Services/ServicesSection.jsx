@@ -684,7 +684,7 @@ const ServicesSection = ({ sectionRef }) => {
   return (
     <section 
       ref={sectionRef} 
-      className="py-20 lg:py-28 relative overflow-hidden"
+      className="py-20 lg:py-16 relative overflow-hidden"
     >
       {/* ====== PREMIUM MODERN BACKGROUND ====== */}
       <div className="absolute inset-0 bg-[#030712]">

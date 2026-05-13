@@ -819,7 +819,7 @@ const HeroSection = () => {
         .stagger-5 { animation-delay: 0.9s; }
       `}</style>
 
-      <section className="relative pt-24 lg:pt-32 pb-16 lg:pb-20 overflow-hidden">
+      <section className="relative pt-24 lg:pt-32 pb-16 lg:pb-12 overflow-hidden">
         {/* ====== PREMIUM MODERN BACKGROUND ====== */}
         <div className="absolute inset-0 bg-[#030712]">
           
@@ -856,7 +856,7 @@ const HeroSection = () => {
                   linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
                   linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px)
                 `,
-                backgroundSize: '20px 20px',
+                backgroundSize: '25px 25px',
               }}
             />
           </div>

@@ -1038,6 +1038,21 @@
 
 // export default WebApplicationsPage;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import React, { useState, useEffect, useRef } from "react";
 import {
   Globe,
@@ -1548,7 +1563,7 @@ const WebApplicationsPage = () => {
       {/* Hero Section */}
       <section
         ref={(el) => (sectionRefs.current["hero"] = el)}
-        className="relative pt-32 lg:pt-40 pb-20 lg:pb-28 overflow-hidden z-10"
+        className="relative pt-32 lg:pt-40 pb-20 lg:pb-16 overflow-hidden z-10"
       >
         {/* Floating Elements (decorative, keep if desired) */}
         <div className="absolute top-40 right-20 hidden lg:block animate-float">
@@ -1648,7 +1663,7 @@ const WebApplicationsPage = () => {
       {/* Types Section */}
       <section
         ref={(el) => (sectionRefs.current["types"] = el)}
-        className="py-20 lg:py-28 relative z-10"
+        className="py-20 lg:py-16 relative z-10"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -1755,7 +1770,7 @@ const WebApplicationsPage = () => {
       {/* Features Section */}
       <section
         ref={(el) => (sectionRefs.current["features"] = el)}
-        className="py-20 lg:py-28 relative z-10"
+        className="py-20 lg:py-16 relative z-10"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -1856,7 +1871,7 @@ const WebApplicationsPage = () => {
       {/* Process Section */}
       <section
         ref={(el) => (sectionRefs.current["process"] = el)}
-        className="py-20 lg:py-28 relative z-10"
+        className="py-20 lg:py-16 relative z-10"
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
@@ -1968,7 +1983,7 @@ const WebApplicationsPage = () => {
       {pageData?.faq_items && pageData.faq_items.length > 0 && (
         <section
           ref={(el) => (sectionRefs.current["faq"] = el)}
-          className="py-20 lg:py-28 relative z-10"
+          className="py-20 lg:py-16 relative z-10"
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="text-center max-w-3xl mx-auto mb-16">
@@ -2062,7 +2077,7 @@ const WebApplicationsPage = () => {
 
       {/* CTA Section */}
       {pageData?.cta_badge && (
-        <section className="py-20 lg:py-28 relative overflow-hidden z-10">
+        <section className="py-20 lg:py-16 relative overflow-hidden z-10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-sm font-medium mb-6 border border-white/20">
               <Globe className="w-4 h-4" style={{ color: colors.accent2 }} />
