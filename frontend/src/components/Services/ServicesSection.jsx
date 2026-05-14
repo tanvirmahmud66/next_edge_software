@@ -542,7 +542,7 @@ const ServicesSection = ({ sectionRef }) => {
         
         // Fetch featured services
         const response = await fetch(
-          '/api/resource/Services?filters=[["is_featured","=",1]]&fields=["name","service_name","description","image","route","is_featured"]&limit_page_length=6'
+          '/api/resource/Services?filters=[["is_featured","=",1]]&fields=["name","service_name","description","image","route","is_featured"]'
         );
         
         const data = await response.json();
