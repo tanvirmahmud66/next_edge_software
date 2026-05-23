@@ -1,0 +1,72 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2026-05-23 13:29:17.109871",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "badge_title",
+  "title",
+  "subtitle",
+  "demos"
+ ],
+ "fields": [
+  {
+   "fieldname": "demos",
+   "fieldtype": "Table",
+   "label": "Demos",
+   "options": "Master Child Item"
+  },
+  {
+   "fieldname": "badge_title",
+   "fieldtype": "Data",
+   "label": "Badge Title"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title"
+  },
+  {
+   "fieldname": "subtitle",
+   "fieldtype": "Data",
+   "label": "Subtitle"
+  }
+ ],
+ "grid_page_length": 50,
+ "index_web_pages_for_search": 1,
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-05-23 14:03:59.270725",
+ "modified_by": "Administrator",
+ "module": "Next Edge Software",
+ "name": "Website Templates",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "Guest",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "sort_field": "creation",
+ "sort_order": "DESC",
+ "states": []
+}

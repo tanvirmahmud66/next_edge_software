@@ -5,7 +5,7 @@ import IndustriesSection from "../components/Industries/IndustriesSection";
 import ProcessSection from "../components/Process/ProcessSection";
 import FaqSection from "../components/Faq/FaqSection";
 import CtaSection from "../components/Cta/CtaSection";
-import ShowcaseGrid from "../components/ScreenshotShowcase/ScreenshotShowcase";
+import WebsiteTemplates from "../components/WebsiteTemplates/WebsiteTemplates";
 
 const HomePage = () => {
   const [isVisible, setIsVisible] = useState({});
@@ -46,7 +46,7 @@ const HomePage = () => {
       />
 
       <IndustriesSection />
-      <ShowcaseGrid />
+      <WebsiteTemplates />
       <ProcessSection />
       <FaqSection />
       <CtaSection />
