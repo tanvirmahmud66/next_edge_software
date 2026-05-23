@@ -500,7 +500,7 @@ const WebsiteTemplates = () => {
 
             return {
               id: demo.name || `template-${index}`,
-              title: demo.title || demo.template_name || demo.heading || "Website Template",
+              title: demo.primary_value || demo.template_name || demo.heading || "Website Template",
               image: imageField, // Store the original field, getImageUrl will process it
               description: demo.description || "",
             };
