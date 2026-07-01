@@ -16,7 +16,7 @@ createRoot(document.getElementById("root")).render(
         root
         options={{
           autoRaf: true,
-          duration: 1.5,
+          duration: 1.3,
           smoothWheel: true,
           syncTouch: true,
           touchMultiplier: 2,

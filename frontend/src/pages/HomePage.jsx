@@ -46,7 +46,7 @@ const HomePage = () => {
       />
 
       <IndustriesSection />
-      <WebsiteTemplates />
+      {/* <WebsiteTemplates /> */}
       <ProcessSection />
       <FaqSection />
       <CtaSection />
