@@ -910,14 +910,14 @@ const ServicesSection = ({ sectionRef }) => {
                   )}
                   
                   {/* Learn More Link */}
-                  <a
+                  {/* <a
                     href={service.link}
                     className="inline-flex items-center gap-2 text-sm font-semibold transition-all duration-300 group/link hover:gap-3"
                     style={{ color: service.accentColor }}
                   >
                     Learn More
                     <ArrowRight className="w-4 h-4 transition-all duration-300 group-hover/link:translate-x-1" />
-                  </a>
+                  </a> */}
                 </div>
 
                 {/* Bottom accent line */}
