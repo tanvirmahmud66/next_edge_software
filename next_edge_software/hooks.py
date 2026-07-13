@@ -27,6 +27,7 @@ add_to_apps_screen = [
 # include js, css files in header of desk.html
 # app_include_css = "/assets/next_edge_software/css/next_edge_software.css"
 # app_include_js = "/assets/next_edge_software/js/next_edge_software.js"
+# hooks.py - Even simpler!
 
 # include js, css files in header of web template
 # web_include_css = "/assets/next_edge_software/css/next_edge_software.css"
@@ -45,6 +46,19 @@ add_to_apps_screen = [
 # include js in doctype views
 # doctype_js = {"doctype" : "public/js/doctype.js"}
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
+doctype_list_js = {
+    "Website Lead": "public/js/next_edge_sidebar.js",
+    "Home Page": "public/js/next_edge_sidebar.js",
+    "Services": "public/js/next_edge_sidebar.js",
+    "Feature": "public/js/next_edge_sidebar.js",
+    "Development Process": "public/js/next_edge_sidebar.js",
+    "Web Application Page": "public/js/next_edge_sidebar.js",
+    "Web Application Type": "public/js/next_edge_sidebar.js",
+    "Website Templates": "public/js/next_edge_sidebar.js",
+    "About Page": "public/js/next_edge_sidebar.js",
+    "Contact Us": "public/js/next_edge_sidebar.js",
+    "Website Theme Color": "public/js/next_edge_sidebar.js",
+}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
 
