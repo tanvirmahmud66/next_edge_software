@@ -515,14 +515,14 @@ const WebApplicationsPage = () => {
                     ) : (
                       <div className="text-gray-400 text-sm mb-4 italic">No features listed</div>
                     )}
-                    <a
+                    {/* <a
                       href="#learn-more"
                       className="inline-flex items-center gap-2 text-sm font-semibold transition-all group-hover:gap-3"
                       style={{ color: accentColor }}
                     >
                       Learn More
                       <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                    </a>
+                    </a> */}
                     <div
                       className="absolute bottom-0 left-0 right-0 h-1 rounded-b-2xl transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"
                       style={{ backgroundColor: accentColor }}

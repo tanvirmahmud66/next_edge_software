@@ -58,11 +58,11 @@
   {
    "child": 0,
    "collapsible": 1,
-   "icon": "arrow-right",
+   "icon": "list",
    "indent": 0,
    "keep_closed": 0,
-   "label": "Development Process",
-   "link_to": "Development Process",
+   "label": "Clients",
+   "link_to": "Clients",
    "link_type": "DocType",
    "show_arrow": 0,
    "type": "Link"
@@ -138,9 +138,21 @@
    "link_type": "DocType",
    "show_arrow": 0,
    "type": "Link"
+  },
+  {
+   "child": 0,
+   "collapsible": 1,
+   "icon": "arrow-right",
+   "indent": 0,
+   "keep_closed": 0,
+   "label": "Development Process",
+   "link_to": "Development Process",
+   "link_type": "DocType",
+   "show_arrow": 0,
+   "type": "Link"
   }
  ],
- "modified": "2026-07-13 12:36:13.693306",
+ "modified": "2026-07-16 13:06:01.392488",
  "modified_by": "Administrator",
  "module": "Next Edge Software",
  "name": "Next Edge",

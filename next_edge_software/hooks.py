@@ -58,6 +58,7 @@ doctype_list_js = {
     "About Page": "public/js/next_edge_sidebar.js",
     "Contact Us": "public/js/next_edge_sidebar.js",
     "Website Theme Color": "public/js/next_edge_sidebar.js",
+    "Clients": "public/js/next_edge_sidebar.js",
 }
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}

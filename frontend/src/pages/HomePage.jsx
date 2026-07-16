@@ -6,6 +6,7 @@ import ProcessSection from "../components/Process/ProcessSection";
 import FaqSection from "../components/Faq/FaqSection";
 import CtaSection from "../components/Cta/CtaSection";
 import WebsiteTemplates from "../components/WebsiteTemplates/WebsiteTemplates";
+import ClientsSection from "../components/ClientsSection/ClientsSection";
 
 const HomePage = () => {
   const [isVisible, setIsVisible] = useState({});
@@ -48,6 +49,7 @@ const HomePage = () => {
       <IndustriesSection />
       {/* <WebsiteTemplates /> */}
       <ProcessSection />
+      <ClientsSection />
       <FaqSection />
       <CtaSection />
     </div>

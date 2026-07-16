@@ -4,7 +4,7 @@
     
     const PREMIUM_WORKSPACE = 'Next Edge';
     const PREMIUM_WORKSPACE_LOWER = 'next_edge';
-    const OUR_DOCTYPES = ['Website Lead', 'Home Page', 'Services', 'Feature', 'Development Process', 'Web Application Page', 'Web Application Type', 'Website Templates', 'About Page', 'Contact Us', 'Website Theme Color'];
+    const OUR_DOCTYPES = ['Website Lead', 'Home Page', 'Services', 'Feature', 'Development Process', 'Web Application Page', 'Web Application Type', 'Website Templates', 'About Page', 'Contact Us', 'Website Theme Color','Clients'];
     
     let isFixing = false;
     let observerStarted = false;
